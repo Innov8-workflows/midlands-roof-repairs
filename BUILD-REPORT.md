@@ -303,3 +303,67 @@ original base64 one at the same viewport and compared - identical page height
 (8675px), identical image counts, **SSIM 0.9909**, and zero failed requests. The
 residual is two video frames not decoding bit-identically between runs. Live load
 time is now about 1.0s for the homepage.
+
+---
+
+## Roofing supplies page, 2026-09-06
+
+`/roofing-supplies/` — a supplier and rep facing page, footer-linked and indexed,
+deliberately **not** in the main nav (which stays six homeowner-facing items).
+
+### The research changed the brief
+
+It was asked for as "his other business called the Roofing Outlaw". Companies
+House says otherwise:
+
+| Company | No. | Directors |
+|---|---|---|
+| THE ROOFING OUTLAW SUPPLIES LTD (Leeds) | 15133261 | Nevin Lupton, Geoffrey Michael Smith |
+| MIDLAND ROOF SHIELD LIMITED (Unit 12, Hednesford) | 15537075 | **Kevin Clee**, sole director |
+
+**Kevin does not own The Roofing Outlaw. He runs its Cannock branch.** The page
+says exactly that, in those words: *"The Roofing Outlaw is a separate company
+based in Leeds. We run the Cannock branch; we do not own the brand."* Anything
+stronger is a false claim about a third party's brand, checkable in thirty
+seconds, on a live indexable page.
+
+Also found: Midland Roof Shield Limited was **formerly Staffordshire Roofing
+Supplies Limited** (and before that Vanguard Roofing, then Everest Roofing
+Staff's). The merchant and the contracting arm are one renamed legal entity at
+one address. The page states the former name deliberately - a supplier may hold
+Kevin on their books under it.
+
+### Corrected something already live
+
+`/about/` said Roofing Outlaw was *"a community of roofers ... not a trade body
+or an accreditation"*. That was a misreading of the onboarding USP and it was
+wrong - it is a roofing products supplier. Rewritten, and it now links here.
+
+### Company details added site-wide
+
+The site displayed **no company name, number or registered office anywhere**,
+which a UK limited company's website is required to carry. Now in the footer of
+every page. Note the homepage has its **own** footer in `_src/body.html`, separate
+from `footer()` in `generate.js` - changing one does not change the other, and a
+crawl from `/` is what caught it.
+
+### Verified
+
+`check.js` passes in client mode, 38 pages, 0.94 MB. Live pass over
+`/roofing-supplies/`, `/about/` and `/`: one h1 each, canonicals right, JSON-LD
+parses, no missing alt, no console errors, no CSP violations, no 4xx. Grepped the
+built and live page for ownership wording - clean.
+
+### Still wanted from Kevin
+
+1. **A photograph of the yard, the counter or stock.** The page is illustrated
+   with the van because there is nothing else. It is the biggest weakness.
+2. **Counter opening hours.** The site says 24 hours everywhere, which is the
+   call-out line. A supplier reading "24 hours" for a trade counter will not
+   believe it.
+3. **What he actually stocks**, and whether he wants brands named. Ranges are
+   described at category level only - the Roofing Outlaw catalogue is not evidence
+   of what is on his shelves.
+4. **Merchant delivery or collection radius**, which is not the contracting radius.
+5. **Confirmation the Cannock branch trades from Unit 12.** Strongly implied by
+   the evidence, not verified from public sources.

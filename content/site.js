@@ -136,7 +136,65 @@ const about = {
      Roofing Outlaw is a roofing community brand, NOT an accreditation or a trade
      body. It appears once, described as what it is, and never in a trust strip
      or beside anything that reads as certification. */
-  outlaw: 'Kevin is also part of Roofing Outlaw, a community of roofers who share work and standards with each other. It is not a trade body or an accreditation, and we would not present it as one, but it is a good sign of a roofer who cares what other roofers think of their work.',
+  /* CORRECTED 2026-09-06. This previously described Roofing Outlaw as "a community
+     of roofers", which was a misreading of the onboarding USP. The Roofing Outlaw
+     is a roofing products supplier with trade counters.
+     Kevin runs its CANNOCK BRANCH. He is NOT a director of The Roofing Outlaw
+     Supplies Ltd (company 15133261, Leeds - directors Nevin Lupton and Geoffrey
+     Michael Smith), and nothing on this site may imply he owns the brand. */
+  outlaw: 'Kevin also runs the Cannock branch of The Roofing Outlaw, the roofing products supplier, from the same yard. It means the roofing side and the merchant side sit under one roof, and that trade customers around Cannock can collect the range locally. There is more on that on our <a href="{{BASE}}roofing-supplies/" style="color:var(--accent)">roofing supplies</a> page.',
 };
 
-module.exports = { contact, reviews, sharedAreaFaqs, generalFaqs, gallery, galleryV2, galleryAll, v2By, about };
+/* ------------------------------------------------------- roofing supplies --
+ * A supplier and rep facing page. Not for homeowners - it does not use the
+ * homeowner side card or the free-quote CTA.
+ *
+ * THE RULE THIS PAGE IS WRITTEN UNDER
+ *   Kevin runs the Roofing Outlaw CANNOCK BRANCH. He does not own the brand.
+ *   THE ROOFING OUTLAW SUPPLIES LTD is company 15133261, registered in Leeds,
+ *   directors Nevin Lupton and Geoffrey Michael Smith. Nothing here may say or
+ *   imply that Kevin owns, founded or directs it. That is checkable in thirty
+ *   seconds on Companies House and it is somebody else's brand.
+ *
+ * Company facts below are from the Companies House record for MIDLAND ROOF
+ * SHIELD LIMITED, 15537075, verified 2026-09-06.
+ *
+ * Product ranges are described at CATEGORY level only. The Roofing Outlaw
+ * catalogue is not evidence of what Kevin's counter actually stocks, and no
+ * brand is named until he confirms one.
+ */
+const supplies = {
+  h1: 'Roofing supplies and trade counter in Cannock',
+  lede: 'A roofing contractor and a roofing merchant, working out of the same yard in Hednesford.',
+  inShort: '{{BUSINESS}} runs a roofing merchant and a roofing contracting business from one yard on Oaklands Industrial Estate in Hednesford. The counter is the Cannock branch of The Roofing Outlaw, so trade customers across Cannock Chase and south {{COUNTY}} can collect the range locally rather than wait on a national delivery. If you supply roofing products and want to talk about stocking, a trade account or a rep visit, {{OWNER_FULL}} is the person to speak to.',
+
+  sections: [
+    ['Contractor and merchant under one roof',
+     ['Most roofing merchants have never laid a roof, and most roofers do not run a counter. We do both, from one unit. There are six of us, and the contracting side works across {{TOWN}}, Hednesford and roughly twenty miles around, so stock moves through our own jobs as well as over the counter.',
+      'For a supplier that is worth something specific: a customer who sells your product and then fits it, and can tell you how it actually behaved on a roof in February rather than only how many pallets moved.']],
+
+    ['The Roofing Outlaw Cannock branch',
+     ['Our counter is the Cannock branch of The Roofing Outlaw, the roofing products supplier. To be clear about it, The Roofing Outlaw is a separate company based in Leeds. We run the Cannock branch; we do not own the brand.',
+      'What that means locally is that roofers in {{COUNTY}} and the north of the Black Country can collect the range here instead of waiting on a delivery from Yorkshire.']],
+
+    ['What we carry',
+     ['Flat roofing systems, pitched roofing, membranes and underlays, roofing timber, and the tools and consumables that go with them.',
+      'If you supply something in those categories and think it belongs on the counter, ring and say so. We would rather look at a product than read a brochure about it.']],
+  ],
+
+  /* Public record. A supplier assessing a trade account will look this up anyway,
+     and the former name matters: they may already hold Kevin on their books under
+     it. It is also the company detail a UK limited company's site should carry. */
+  company: [
+    ['Registered name', 'Midland Roof Shield Limited'],
+    ['Company number', '15537075, registered in England and Wales'],
+    ['Registered office', 'Unit 12 Oaklands Industrial Estate, Lower Road, Hednesford, Cannock WS12 2UZ'],
+    ['Director', 'Kevin Clee'],
+    ['Previously', 'Staffordshire Roofing Supplies Limited, so you may hold us on your books under that name'],
+  ],
+
+  ctaTitle: 'Trade and supplier enquiries',
+  ctaBody: 'Stocking, trade accounts and rep visits all go direct to {{OWNER}} rather than through a call centre.',
+};
+
+module.exports = { contact, reviews, sharedAreaFaqs, generalFaqs, gallery, galleryV2, galleryAll, v2By, about, supplies };

@@ -180,6 +180,21 @@ const sideCard = () => `<div class="side">
   </div>
 </div>`;
 
+/* The homeowner side card sells a free quote, which is the wrong ask for a
+   supplier or a rep. This one gives them the direct line and the company facts
+   they would otherwise have to look up. */
+const tradeSideCard = () => `<div class="side">
+  <div class="side-card">
+    <h2>Trade and supplier enquiries</h2>
+    <p>Stocking, trade accounts and rep visits go direct to ${esc(T.OWNER)}, not through a call centre.</p>
+    <a class="btn btn-primary" href="tel:${T.PHONE_TEL}" data-track="call">${svg('phone')}Call ${T.PHONE}</a>
+    <a class="btn btn-ghost" href="mailto:${T.EMAIL}">${svg('mail')}Email us</a>
+    <div class="factrow">${svg('pin')}<span>${esc(SITE.contact.addressOneLine)}</span></div>
+    <div class="factrow">${svg('users')}<span>Roofing contractor and roofing merchant, one yard, six of us</span></div>
+    <div class="factrow">${svg('shield')}<span>Midland Roof Shield Limited, company 15537075</span></div>
+  </div>
+</div>`;
+
 const galleryFigs = ids => `<div class="pg-grid">` + ids.map(id => {
   const g = SITE.galleryAll.find(x => x[0] === id);
   return `<figure><img loading="lazy" src="${asset(id + '.jpg')}" alt="${esc(g[1])}"><figcaption>${esc(g[2])}</figcaption></figure>`;
@@ -388,8 +403,8 @@ for (const a of AREAS) {
       <figure><img loading="lazy" src="${asset('about1.jpg')}" alt="The ${esc(T.BUSINESS)} van parked outside a house being re-roofed"><figcaption>The van on site</figcaption></figure>
       <figure><img loading="lazy" src="${asset('about2.jpg')}" alt="Roofers stripping the old tiles from a roof before it is re-covered"><figcaption>Stripping a roof back</figcaption></figure>
     </div>
-    <h2>Roofing Outlaw</h2>
-    <p>${esc(SITE.about.outlaw)}</p>
+    <h2>The Roofing Outlaw Cannock branch</h2>
+    <p>${tok(SITE.about.outlaw)}</p>
     <h2>What you can expect</h2>
     <ul>
       <li>A free quote, fixed and in writing, before anything starts</li>
@@ -401,6 +416,59 @@ for (const a of AREAS) {
     ${ctaBand('Want a quote from us?', 'Ring, message on WhatsApp, or send a couple of photographs and we will tell you what we think.')}
   </div>
   ${sideCard()}
+</div></div></section>`,
+  }));
+}
+
+/* ------------------------------------------------------- roofing supplies --
+ * Supplier and rep facing. See content/site.js `supplies` for the rule this page
+ * is written under: Kevin runs the Roofing Outlaw CANNOCK BRANCH and does not own
+ * the brand. Nothing here may imply otherwise. */
+{
+  const S = SITE.supplies;
+  const crumbs = [['Home', B], ['Roofing supplies', null]];
+  const title = 'Roofing Supplies in {{TOWN}} | {{BUSINESS}}';
+  const desc = 'A roofing merchant and a roofing contractor in one yard in Hednesford, {{TOWN}}. Trade counter, collection, and supplier enquiries direct to {{OWNER_FULL}}.';
+  write('roofing-supplies/index.html', shell({
+    slug: 'roofing-supplies', title, desc, ogImage: 'about1.jpg',
+    /* bizNode + WebPage + BreadcrumbList only. Deliberately NO second business
+       entity and nothing naming The Roofing Outlaw as his, and no FAQPage
+       because the page carries no visible questions. */
+    schema: [bizNode(), ...webPage('roofing-supplies', title, desc, crumbs)],
+    body: `<section class="page-head"><div class="wrap">${crumbTrail(crumbs)}
+  <h1>${esc(tok(S.h1))}</h1>
+  <p class="lede">${esc(tok(S.lede))}</p>
+</div></section>
+<section class="sec s-light"><div class="wrap"><div class="two-col">
+  <div class="prose">
+    <h2>In short</h2>
+    <div class="inshort"><p>${esc(tok(S.inShort))}</p></div>
+
+    ${S.sections.map(([h, ps]) =>
+      '<h2>' + esc(tok(h)) + '</h2>' + ps.map(p => '<p>' + esc(tok(p)) + '</p>').join('')).join('\n    ')}
+
+    <div class="pg-media">
+      <img loading="lazy" src="${asset('about1.jpg')}" alt="The ${esc(T.BUSINESS)} van outside a house being re-roofed">
+    </div>
+
+    <h2>Company details</h2>
+    <ul>
+      ${S.company.map(([k, v]) => '<li><strong>' + esc(k) + ':</strong> ' + esc(v) + '</li>').join('\n      ')}
+    </ul>
+
+    <div class="cta-band">
+      <h2>${esc(tok(S.ctaTitle))}</h2>
+      <p style="color:var(--fg-muted)">${esc(tok(S.ctaBody))}</p>
+      <div class="hero-btns">
+        <a class="btn btn-primary" href="tel:${T.PHONE_TEL}" data-track="call">${svg('phone')}Call ${T.PHONE}</a>
+        <a class="btn btn-ghost" href="mailto:${T.EMAIL}">${svg('mail')}${T.EMAIL}</a>
+      </div>
+    </div>
+
+    <h2>The roofing side</h2>
+    <p>The contracting arm covers ${AREAS.length} towns within about twenty miles of the yard. <a href="${B}services/">What we do</a> and <a href="${B}areas-we-cover/">where we work</a>.</p>
+  </div>
+  ${tradeSideCard()}
 </div></div></section>`,
   }));
 }

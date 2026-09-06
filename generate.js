@@ -13,14 +13,17 @@
  *     assets/site.css so it caches across every page.
  *   - _src/assets/*, copied as real files for the new pages.
  *
- * THE HOMEPAGE IS NOT REGENERATED HERE
- *   Jay's instruction on 2026-09-06 was to leave index.html alone. The root
- *   index.html - the single-file base64 demo, both videos inlined, 3.6 MB - is
- *   COPIED VERBATIM into _site/. Nothing is re-encoded and no video is replaced.
- *   The consequence is that _site/index.html fails two client-mode gates (the
- *   2 MB payload budget and the no-base64-video rule). That is a known, accepted
- *   exception and it is reported rather than hidden. Every other page passes.
- *   To change it later, generate the homepage here with real file assets instead.
+ * THE HOMEPAGE IS COPIED, NOT REGENERATED
+ *   The root index.html - built by the kit from _src/body.html - is copied into
+ *   _site/ rather than rebuilt here. Its markup, section order, hero and both
+ *   videos are untouched, and nothing is re-encoded.
+ *   What IS changed on the way through, in build-pages.js: a canonical and a
+ *   LocalBusiness schema block are injected (the kit template emits neither), and
+ *   every base64 data: URI is swapped back to its real file path. That last one
+ *   took the homepage from 3.85 MB to 0.09 MB and is why the whole site now
+ *   passes client mode.
+ *   NOTE the homepage has its OWN footer, in _src/body.html. The footer() below
+ *   does not reach it - change both, and crawl from / to prove it.
  *
  * CSS url() WARNING
  *   assets/site.css defines the {{VAR:}} payloads as url(). A RELATIVE url in an
@@ -258,12 +261,15 @@ ${areaLinks}
           <li><a href="mailto:${T.EMAIL}">${T.EMAIL}</a></li>
           <li><a href="https://wa.me/${T.PHONE_WA}" target="_blank" rel="noopener">WhatsApp us</a></li>
           <li>${esc(SITE.contact.addressOneLine)}</li>
+          <li><a href="${B}roofing-supplies/">Roofing supplies and trade counter</a></li>
         </ul>
         <div class="accred">Public liability insured. 10 year workmanship guarantee.</div>
       </div>
     </div>
     <div class="foot-bar">
-      <small>Copyright 2026 ${esc(T.BUSINESS)}. All rights reserved.
+      <small>Midland Roof Shield Limited, registered in England and Wales, company 15537075.
+        Registered office ${esc(SITE.contact.addressOneLine)}.<br>
+        Copyright 2026 ${esc(T.BUSINESS)}. All rights reserved.
         <a href="${B}privacy-policy/">Privacy</a> / <a href="${B}terms/">Terms</a></small>
       <small>Website by <a href="https://innov8workflows.co.uk" target="_blank" rel="noopener">Innov8 Workflows</a></small>
     </div>
