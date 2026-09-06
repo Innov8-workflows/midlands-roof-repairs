@@ -197,4 +197,55 @@ const supplies = {
   ctaBody: 'Stocking, trade accounts and rep visits all go direct to {{OWNER}} rather than through a call centre.',
 };
 
-module.exports = { contact, reviews, sharedAreaFaqs, generalFaqs, gallery, galleryV2, galleryAll, v2By, about, supplies };
+/* -------------------------------------------------- review landing page --
+ * The one-card page Kevin texts a customer the day a job finishes. It is NOT a
+ * public /reviews/ page, which this site does not have.
+ *
+ * ==================== THIS PAGE DOES NOT BUILD YET ======================
+ * `google` is empty because Kevin has no Google Business Profile. Confirmed with
+ * Jay 2026-09-06. Submission #17 claimed "5.0 from 50" but `gbp` was blank, and
+ * no profile is findable under "Midland Roof Shield" or the former name
+ * "Staffordshire Roofing Supplies".
+ *
+ * pages-review.js WILL NOT WRITE THE PAGE while `google` is empty, so it cannot
+ * ship pointing at nowhere. Paste the link in and it appears on the next build.
+ *
+ * IT MUST BE THE ASK-FOR-REVIEWS LINK, from the Business Profile dashboard:
+ *     Business Profile -> Ask for reviews -> copy link
+ * It looks like  https://g.page/r/XXXXXXXX/review  and opens the write dialog.
+ * NOT the profile URL, which lands on the listing where people READ reviews.
+ * Verify with `curl -sIL` before shipping - a dead review link is worse than no
+ * button at all.
+ *
+ * `secondary` is empty on purpose. There is still no Facebook page URL and no
+ * Checkatrade or MyBuilder profile has ever been mentioned. Google-only is a
+ * legitimate shape, and Google is the only one that moves the local ranking. */
+const reviewLinks = {
+  google: '',
+  secondary: [],   // e.g. { name: 'Facebook', url: 'https://...' }
+};
+
+const review = {
+  eyebrow: 'Job complete',
+  title: 'Thank you',
+  /* Names Kevin, not the company. "having Kevin out" reads like a person;
+     "choosing Midland Roof Shield Limited" does not. */
+  thanks: 'We really appreciate you having {{OWNER}} and the team out, and we hope you are pleased with how the roof has come out.',
+  askTitle: 'Could you spare thirty seconds?',
+  ask: 'We are a family business and we do not advertise much. Almost everyone who rings us found us through somebody else, so a few words from you genuinely decides whether the next person gives us a go.',
+  button: 'Leave a Google review',
+  buttonNote: 'Opens Google, about thirty seconds',
+  steps: [
+    'Tap the green button above.',
+    'Sign in if Google asks. On a phone you almost certainly already are.',
+    'Pick a star rating, add a few words about the job, and post it.',
+  ],
+  /* The reason this section exists: it gives an unhappy customer somewhere to go
+     that is not a public one star. */
+  putRightTitle: 'Not quite happy?',
+  putRight: 'If something is not right we would much rather hear it from you first and put it straight. Ring {{OWNER}} on {{PHONE}} or send a message on WhatsApp, and we will come back out.',
+  /* Only claims declared in site.config.js claims{}. */
+  reassure: 'Public liability insured. Ten year workmanship guarantee.',
+};
+
+module.exports = { contact, reviews, sharedAreaFaqs, generalFaqs, gallery, galleryV2, galleryAll, v2By, about, supplies, reviewLinks, review };

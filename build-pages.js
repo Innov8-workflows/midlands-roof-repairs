@@ -634,6 +634,15 @@ legalShell('terms', 'Terms and conditions',
   }), 'utf8');
 }
 
+/* -------------------------------------------------- review landing page --
+ * Its own module, like the Sparham reference build, because it shares nothing
+ * with the rest of the site: own <style>, no nav, no footer links, no site
+ * stylesheet. It is opened once, on a phone, on mobile data.
+ *
+ * GATED. Writes nothing while content/site.js reviewLinks.google is empty, so it
+ * cannot ship with a dead button. */
+require('./pages-review.js')({ write, G });
+
 /* ------------------------------------------------------- sitemap + robots -- */
 const today = new Date().toISOString().slice(0, 10);
 fs.writeFileSync(path.join(OUT, 'sitemap.xml'),

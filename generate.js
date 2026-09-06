@@ -418,7 +418,7 @@ const faqSchema = list => ({
 module.exports = {
   STAGING, NOINDEX, buildCss, shell, crumbTrail, ctaBand, faqBlock, svg, esc, tok, asset,
   varName, B, ORIGIN, T, cfg, SERVICES, AREAS, SITE, OUT, ROOT, SRC, ASSETS, KIT,
-  bizNode, webPage, faqSchema, BIZ_ID, NAV,
+  bizNode, webPage, faqSchema, BIZ_ID, NAV, WA_PATH,
 };
 
 if (require.main === module) require(path.join(ROOT, 'build-pages.js'));

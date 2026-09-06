@@ -367,3 +367,60 @@ built and live page for ownership wording - clean.
 4. **Merchant delivery or collection radius**, which is not the contracting radius.
 5. **Confirmation the Cannock branch trades from Unit 12.** Strongly implied by
    the evidence, not verified from public sources.
+
+---
+
+## Review landing page, 2026-09-06 — BUILT BUT GATED OFF
+
+`/review/` — the one card Kevin texts a customer the day a job finishes. It is
+**written and verified but does not build**, because it has nowhere to send them.
+
+### Why it is not live
+
+`reviewLinks.google` in `content/site.js` is empty. **Kevin has no Google
+Business Profile.** Submission #17 claimed "5.0 from 50" but `gbp` was blank, and
+no profile is findable under "Midland Roof Shield" or the former name
+"Staffordshire Roofing Supplies". There is still no Facebook page URL either, and
+no Checkatrade or MyBuilder profile, so every fallback button would also point
+nowhere. A dead review link is worse than no button.
+
+`pages-review.js` **refuses to write the page** while that value is empty, so it
+cannot ship pointing at nowhere. To turn it on:
+
+1. Kevin creates a Google Business Profile. **This is the actual priority** — it
+   is what puts him in the map pack for "roofer Cannock", it is free, and it
+   makes the review page worth having.
+2. Business Profile -> **Ask for reviews** -> copy link (`https://g.page/r/.../review`).
+   NOT the profile URL, which lands where people *read* reviews.
+3. Paste it into `reviewLinks.google`, `node generate.js && npx wrangler deploy`.
+4. Verify with `curl -sIL` that it lands on the write-a-review dialog.
+
+### What is already done and verified
+
+Built with a temporary link and checked in a real browser under the live CSP,
+then reverted:
+
+- **zero `<script>` tags of any kind** — the href is written at build time, so a
+  CSP can never leave the button on `href="#"`
+- href matched the configured URL **exactly**
+- **four links on the entire page**: Google, phone, WhatsApp, Innov8. No nav, no
+  footer links, nothing else to leave through
+- `noindex, nofollow`, self-referencing canonical, and **absent from
+  `sitemap.xml`** (passed to `write()` with `addToSitemap` false)
+- one `h1`, no horizontal overflow at 390px, zero CSP violations, no console
+  errors, no 4xx
+- own ~3 KB stylesheet, not the site's. 10 KB page, opened once on mobile data
+- a still photograph, not the hero clip — so no `prefers-reduced-motion` branch
+  to get wrong, and no 540 KB video on a page opened once
+- Google's official four-path "G". No traced brand marks
+- the reassurance line carries only claims declared in `site.config.js`
+
+**Its own link card is live now**: `/assets/card-review.jpg`, 1200x630, centred,
+serving `200 image/jpeg`. Deliberately not the site default — otherwise the
+review link and the homepage link produce identical previews in the same WhatsApp
+thread.
+
+> When it does go live, paste the URL into a **fresh** WhatsApp chat. WhatsApp
+> caches previews per page URL for weeks, so a link already shared keeps its old
+> card even after the image changes. Facebook can be forced at
+> developers.facebook.com/tools/debug.
