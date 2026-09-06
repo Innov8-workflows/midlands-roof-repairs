@@ -1,0 +1,16 @@
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Cross-Origin-Opener-Policy: same-origin
+  Permissions-Policy: accelerometer=(), autoplay=(self), camera=(), display-capture=(), encrypted-media=(), fullscreen=(self), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), payment=(), usb=(), xr-spatial-tracking=()
+  Content-Security-Policy: default-src 'self'; base-uri 'none'; object-src 'none'; frame-src 'none'; frame-ancestors 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self' data:; connect-src 'self'; form-action 'self'; manifest-src 'none'; worker-src 'none'; upgrade-insecure-requests
+
+# Filenames are not content hashed, so a replaced photo must not be able to stick
+# in a cache with no way to bust it. Cloudflare's default (revalidate + ETag)
+# gives repeat visitors a cheap 304 without that risk.
+
+# Belt and braces while the custom domain settles. workers_dev is set false once
+# the apex serves.
+https://:worker.:account.workers.dev/*
+  X-Robots-Tag: noindex, nofollow

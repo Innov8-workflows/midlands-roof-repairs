@@ -1,0 +1,202 @@
+{
+  "id": 17,
+  "business_name": "Midland roof shield",
+  "status": "submitted",
+  "submitted_at": "2026-09-06 05:28:45",
+  "schema_version": "2026-08-31",
+  "biz": "Midland roof shield",
+  "owner": "Kevin clee",
+  "ownerShort": "Kevin",
+  "domain": "",
+  "addr": "Unit 12 oaklands ind estate lower road hednesford ws12 2uz",
+  "email": "Midlandroofs@gmail.com",
+  "phone": {
+    "display": "07411 859355",
+    "tel": "+447411859355",
+    "wa": "447411859355"
+  },
+  "landline": null,
+  "whatsapp": {
+    "display": "07411 859355",
+    "tel": "+447411859355",
+    "wa": "447411859355"
+  },
+  "years": "25",
+  "team": "6",
+  "story": "Family business",
+  "tagline": "",
+  "primaryServices": [
+    "Roof repairs",
+    "Roof replacement",
+    "Fascias guttering",
+    "Roof cleaning",
+    "New conservatory warm roofs"
+  ],
+  "primaryAreas": [
+    "20 mile radius"
+  ],
+  "secondaryServices": [],
+  "secondaryAreas": [],
+  "reviews": {},
+  "gbp": "",
+  "confirm": [
+    {
+      "field": "years_trading",
+      "label": "Years in business",
+      "value": "25",
+      "certificate_attached": false,
+      "note": "Client's own words. Do not publish until the certificate has been seen."
+    },
+    {
+      "field": "insured",
+      "label": "Do you hold public liability insurance?",
+      "value": "Yes",
+      "certificate_attached": false,
+      "note": "Client's own words. Do not publish until the certificate has been seen."
+    },
+    {
+      "field": "public_liability_amount",
+      "label": "Cover amount",
+      "value": "100000",
+      "certificate_attached": false,
+      "note": "Client's own words. Do not publish until the certificate has been seen."
+    },
+    {
+      "field": "guarantee",
+      "label": "Any guarantee you offer",
+      "value": "10 years",
+      "certificate_attached": false,
+      "note": "Client's own words. Do not publish until the certificate has been seen."
+    }
+  ],
+  "missing": [
+    "Preferred website address",
+    "Your logo",
+    "Photos of your best work (0 of 20)"
+  ],
+  "town": "Cannock",
+  "county": "Staffordshire",
+  "postcodeArea": "Ws122uz",
+  "openingHours": "24hours",
+  "scheme": "",
+  "schemeNumber": "",
+  "nearby": {},
+  "serviceDetail": {},
+  "topServices": "Repairs",
+  "customerQuestions": "",
+  "usp": "We have our own roofing supplie shop & were part of the roofing outlaw",
+  "aboutTeam": "",
+  "targetAudience": "Homeowners",
+  "ratings": {
+    "google": {
+      "score": "5",
+      "count": "50"
+    },
+    "facebook": {
+      "score": "",
+      "count": ""
+    }
+  },
+  "brand": {
+    "colours": "Green",
+    "font": "",
+    "style": "",
+    "reference": ""
+  },
+  "contactWidgets": [
+    "WhatsApp button",
+    "Click-to-call button"
+  ],
+  "notes": "",
+  "assets": [],
+  "asset_counts": {},
+  "site_config_draft": {
+    "name": "Midland roof shield",
+    "trade": "[SET THIS]",
+    "mode": "client",
+    "direction": null,
+    "origin": "",
+    "owner": "Kevin clee",
+    "email": "Midlandroofs@gmail.com",
+    "address": "Unit 12 oaklands ind estate lower road hednesford ws12 2uz",
+    "services": [
+      "Roof repairs",
+      "Roof replacement",
+      "Fascias guttering",
+      "Roof cleaning",
+      "New conservatory warm roofs"
+    ],
+    "servicesSecondary": [],
+    "areas": [
+      "20 mile radius"
+    ],
+    "areasSecondary": [],
+    "reviews": {},
+    "claims": {},
+    "tokens": {
+      "BUSINESS": "Midland roof shield",
+      "BUSINESS_SHORT": "Midland roof shield",
+      "TOWN": "Cannock",
+      "PHONE": "07411 859355",
+      "PHONE_TEL": "+447411859355",
+      "PHONE_WA": "447411859355"
+    }
+  },
+  "sections": [
+    {
+      "id": "business",
+      "title": "Your business",
+      "answered": 5,
+      "total": 9
+    },
+    {
+      "id": "contact",
+      "title": "How customers reach you",
+      "answered": 5,
+      "total": 7
+    },
+    {
+      "id": "areas",
+      "title": "Where you work",
+      "answered": 4,
+      "total": 6
+    },
+    {
+      "id": "services",
+      "title": "What you do",
+      "answered": 2,
+      "total": 5
+    },
+    {
+      "id": "proof",
+      "title": "Credentials and reviews",
+      "answered": 5,
+      "total": 21
+    },
+    {
+      "id": "story",
+      "title": "Your story",
+      "answered": 3,
+      "total": 4
+    },
+    {
+      "id": "media",
+      "title": "Photos and video",
+      "answered": 0,
+      "total": 0
+    },
+    {
+      "id": "look",
+      "title": "Look and feel",
+      "answered": 1,
+      "total": 4
+    },
+    {
+      "id": "extra",
+      "title": "Anything else",
+      "answered": 0,
+      "total": 1
+    }
+  ],
+  "url_expires_in": 3600
+}

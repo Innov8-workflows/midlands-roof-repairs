@@ -1,0 +1,103 @@
+/* Everything that is not a service page or an area page.
+ * Source: onboarding submission #17.
+ *
+ * EMPTY IN THE SUBMISSION and therefore absent below rather than invented:
+ *   nearby{}          the villages on each area page are Claude research
+ *   serviceDetail{}   no durations and NO PRICES anywhere on the site
+ *   customerQuestions the FAQs are written from the trade, not Kevin's words
+ *   aboutTeam         nothing about the six of them individually
+ *   tagline, brand.font, brand.style, notes, scheme, schemeNumber
+ *   gbp               so no reviews page, no review badges, no aggregateRating
+ *
+ * `story` came back as the two words "Family business". The about page below
+ * builds on that plus `years`, `team` and `usp` and does not pretend to more.
+ */
+'use strict';
+
+const contact = {
+  address: {
+    line1: 'Unit 12 Oaklands Industrial Estate',
+    line2: 'Lower Road',
+    town: 'Hednesford',
+    region: 'Staffordshire',
+    postcode: 'WS12 2UZ',
+    country: 'GB',
+  },
+  addressOneLine: 'Unit 12 Oaklands Industrial Estate, Lower Road, Hednesford, Cannock WS12 2UZ',
+  hours: '24 hours a day, 7 days a week',
+  hoursSchema: 'Mo-Su 00:00-23:59',
+  hoursNote: 'Kevin gave the hours as "24 hours" on the onboarding form. Worth confirming that means a genuine round the clock call out rather than an answerphone, because the site now says so on every page.',
+};
+
+/* Reviews are DELIBERATELY absent. ratings.google says 5.0 from 50, but `gbp`
+   is empty so there is no profile to link to, and check.js fails a client build
+   on a review badge that points nowhere. Jay decided on 2026-09-06 to leave
+   reviews off entirely until there is a live profile. When there is one, add the
+   URL here and the reviews page and homepage section come back. */
+const reviews = { read: [], collect: [] };
+
+/* The three questions every area page carries, plus the two written for that
+   specific town in content/areas.js. */
+const sharedAreaFaqs = [
+  ['Do you charge for a quote?', 'No. Someone comes out, looks at the roof properly and gives you a fixed written price. There is no charge and no obligation.'],
+  ['How far do you travel?', 'We work to roughly a twenty mile radius of our yard in Hednesford, which covers Cannock Chase, most of south Staffordshire and the north of the Black Country. If you are just outside that it is still worth ringing.'],
+  ['Are you insured?', 'Yes. {{BUSINESS}} carries public liability insurance and we are happy to show you the certificate before any work starts.'],
+];
+
+const generalFaqs = [
+  ['Do you charge for a quote?', 'No. We come out, look at the roof properly and give you a fixed written price, at no cost and with no obligation to go ahead.'],
+  ['How quickly can you come out for a leak?', 'We answer the phone 24 hours a day, so you will speak to a person whatever the time. How quickly we can get on the roof depends on the weather and where you are, and we will give you a realistic answer when you call.'],
+  ['Are you insured?', 'Yes. We carry public liability insurance, and the certificate is available to see before work begins.'],
+  ['Do you offer a guarantee?', 'Yes, ten years on our workmanship. Tiles, membranes and other materials carry their own manufacturer warranties, which are separate and which we will point you to rather than blurring the two together.'],
+  ['How long have you been roofing?', 'Twenty five years. {{BUSINESS}} is a family business and there are six of us.'],
+  ['What areas do you cover?', 'Around twenty miles from our yard in Hednesford. That takes in Cannock, Rugeley, Burntwood, Lichfield, Penkridge and Stafford, down through Brownhills, Walsall and Aldridge, and across to Wolverhampton, Tamworth and Sutton Coldfield.'],
+  ['Will I need scaffolding?', 'Anything above single storey, or any job lasting more than a short visit, normally does, both for safety and for a better finish. It is included in the written price from the start rather than added later.'],
+  ['Do you work in bad weather?', 'Some work can be made safe in the wet, but a lasting repair needs a dry roof, particularly anything involving mortar or lead. We will always tell you which of the two you are getting.'],
+  ['Can you match my existing tiles?', 'Usually, including discontinued profiles. We run our own roofing supplies shop, so we can often source a match faster than a firm waiting on a merchant delivery.'],
+  ['Do you take on commercial work as well as houses?', 'Yes. Most of what we do is for homeowners, but we take on commercial roofs too. Ring and describe it and we will tell you honestly whether it suits us.'],
+  ['What happens if you find something unexpected once you start?', 'We stop, photograph it and tell you what it will cost before carrying on. Nobody enjoys that call, but it is a great deal better than finding out afterwards.'],
+  ['Do you clear up afterwards?', 'Yes. Waste goes with us as we go rather than sitting in a skip on the drive for a fortnight, and the drive gets swept before we leave.'],
+  ['Can I see photographs of the work?', 'Yes, and we take them as a matter of course. Most of a roof is somewhere you will never stand, so photographs of each stage are the only way you can actually see what you paid for.'],
+  ['Do you do emergency call outs?', 'Yes, on a 24 hour line. If something has come off in the night we would rather make it safe first and talk about the proper repair in daylight.'],
+];
+
+/* The demo gallery, reused. Alt text is what a person would describe, because
+   check.js fails a client build on a missing alt and a decorative one helps
+   nobody. Kevin uploaded no captioned photos with the submission (media section:
+   0 of 20), so these are the demo's own captions. */
+const gallery = [
+  ['g1',  'Newly tiled hip roof with a bedded ridge and a chimney stack behind', 'Re-roof completed'],
+  ['g2',  'Red clay tiled roof photographed along the ridge on a clear day', 'Clay tiled roof'],
+  ['g3',  'Slate roof and stone chimney stacks on an older property', 'Slate and stone chimneys'],
+  ['g4',  'New lead work dressed into a grey tiled roof beside a flat section', 'Leadwork and abutment'],
+  ['g5',  'Finished tiled roof looking out across woodland under a grey sky', 'Tiled roof and ridge'],
+  ['g6',  'Red tiled hip roof meeting a newly laid grey flat roof below it', 'Pitched and flat together'],
+  ['g7',  'Lead flashing and soakers stepped into the side of a brick chimney', 'Chimney flashing renewed'],
+  ['g8',  'Two red tiled roof slopes meeting along a shared ridge', 'Ridge and verge detail'],
+  ['g9',  'Lead valley dressed between two slate slopes against stone brickwork', 'Lead valley'],
+  ['g10', 'Grey tiled hip and valley with new lead work below the chimney', 'Hip and valley tiling'],
+  ['g11', 'Stepped lead flashing at the base of a brick chimney on a red tiled roof', 'Chimney leadwork'],
+  ['g12', 'Tiles cut and dressed neatly into a brick abutment wall', 'Abutment detail'],
+  ['g13', 'Brown tiles run up to a brick gable with the scaffold still in place', 'Gable and scaffold'],
+  ['g14', 'Freshly tiled roof slope with the scaffold boards still down', 'Tiling in progress'],
+  ['g15', 'New tiles loaded out in stacks across the membrane at the end of the day', 'Loading out'],
+  ['g16', 'Roof stripped back with the scaffold sheeted before the new covering goes on', 'Stripped and sheeted'],
+  ['g17', 'Lead tray and flashing formed around a stone chimney above a flat roof', 'Lead tray'],
+];
+
+const about = {
+  lede: 'A family roofing business working out of Hednesford, twenty five years in and six of us on the books.',
+  paras: [
+    '{{BUSINESS}} is a family business. {{OWNER_FULL}} has been roofing for twenty five years, and there are six of us working out of our yard on Oaklands Industrial Estate in Hednesford, just outside Cannock. We cover roughly twenty miles from there, which takes in most of Cannock Chase and south Staffordshire and reaches down into the north of the Black Country.',
+    'The thing that makes us slightly unusual is that we run our own roofing supplies shop. That sounds like a detail until you are the customer waiting on a discontinued tile profile, because it means we can generally lay hands on a match ourselves rather than joining a queue behind every other roofer waiting on a merchant delivery. On a repair where matching the existing roof is the whole job, that is often the difference between a week and a month.',
+    'We take on repairs, full re-roofs, fascias and guttering, roof cleaning and conservatory warm roofs, mostly for homeowners. The work carries a ten year guarantee and we are covered by public liability insurance, and you are welcome to see the certificate before anything starts rather than after.',
+    'Most of a roof is somewhere you are never going to stand, which is exactly why it is easy to cut corners on. We photograph each stage as we go, so what went on under the tiles is something you can look at rather than something you have to take on trust.',
+  ],
+  /* usp verbatim: "We have our own roofing supplie shop & were part of the roofing outlaw"
+     Roofing Outlaw is a roofing community brand, NOT an accreditation or a trade
+     body. It appears once, described as what it is, and never in a trust strip
+     or beside anything that reads as certification. */
+  outlaw: 'Kevin is also part of Roofing Outlaw, a community of roofers who share work and standards with each other. It is not a trade body or an accreditation, and we would not present it as one, but it is a good sign of a roofer who cares what other roofers think of their work.',
+};
+
+module.exports = { contact, reviews, sharedAreaFaqs, generalFaqs, gallery, about };

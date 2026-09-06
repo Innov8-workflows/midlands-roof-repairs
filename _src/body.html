@@ -1,0 +1,739 @@
+<!-- innov8 site-kit - golden body.
+     Copied per project into _src/body.html, then edited for the client.
+     Section order is the house standard: see rules/HOUSE-RULES.md. Do not
+     reorder it. Double-brace tokens are filled from site.config.js `tokens`; anything
+     left unresolved is reported by check.js. -->
+<style>
+  /* Project surface tweaks. Colour only - the direction owns everything else. */
+  .s-brand{--bg:#101A15}
+  .s-tint{--bg:#F3F7F3;--card-line:#E1E8E2;--card-line-hi:#BECBC0}
+  .s-light{--card:#F4F7F4;--card-line:#E3EAE4;--card-line-hi:#C4D0C6}
+  /* the brand caption sits on the dark nav and drawer, where --brand2 slate is
+     unreadable. Green reads and matches the wrap. */
+  .brand-txt span{color:var(--brand-lt)}
+  /* The hero logo box is square in the template, but this lockup is 900x370,
+     so a square box left 59% of its height empty - and doubling the width would
+     have doubled that dead space and pushed the hero past its 880px min-height.
+     Hug the artwork instead; --hero-logo-gap now owns the space below it. */
+  .hero-logo{aspect-ratio:900/370}
+  /* the transformation clip sits in the same slot the .ba slider did */
+  .ba-video{display:block;width:100%;border-radius:inherit}
+  /* Where we work: photograph behind the band. Same structure as .cta. */
+  .areas{position:relative;overflow:hidden;isolation:isolate;background-image:none}
+  .areas-bg{position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center}
+  .areas-scrim{position:absolute;inset:0;z-index:-1;background:
+    radial-gradient(72% 100% at 10% 50%,rgba(var(--brand-rgb),.30),transparent 62%),
+    radial-gradient(72% 100% at 92% 42%,rgba(var(--brand2-rgb),.24),transparent 60%),
+    linear-gradient(135deg,rgba(var(--ink-deep-rgb),.93) 0%,rgba(var(--ink-rgb),.88) 52%,rgba(var(--ink-deep-rgb),.94) 100%)}
+</style>
+
+<!-- ================= NAV ================= -->
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <a class="brand" href="#top" aria-label="{{BUSINESS}} home">
+      <span class="logo-mark" style="background-image:{{VAR:logo.png}}" role="img" aria-label="{{BUSINESS}} logo"></span>
+      <span class="brand-txt">
+        <b>{{BUSINESS_SHORT}}</b>
+        <span>Roof Shield</span>
+      </span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="{{BASE}}services/">Services</a>
+      <a href="#transformations">Our Jobs</a>
+      <a href="{{BASE}}our-work/">Our Work</a>
+      <a href="{{BASE}}about/">About</a>
+      <a href="{{BASE}}areas-we-cover/">Areas</a>
+      <a href="{{BASE}}faqs/">FAQs</a>
+      <a href="{{BASE}}contact/">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="nav-call" href="tel:{{PHONE_TEL}}" data-track="call">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span class="lbl">{{PHONE}}</span>
+      </a>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ================= MOBILE DRAWER ================= -->
+<div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="drawer-top">
+    <a class="brand" href="#top">
+      <span class="logo-mark" style="background-image:{{VAR:logo.png}}" aria-hidden="true"></span>
+      <span class="brand-txt"><b>{{BUSINESS_SHORT}}</b><span>Roof Shield</span></span>
+    </a>
+    <button class="burger" id="closeDrawer" aria-label="Close menu" style="display:flex">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+  </div>
+  <nav>
+    <a href="{{BASE}}services/">Services <svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    <a href="#transformations">Our Jobs <svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    <a href="{{BASE}}our-work/">Our Work <svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    <a href="{{BASE}}about/">About <svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    <a href="{{BASE}}areas-we-cover/">Areas <svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    <a href="{{BASE}}faqs/">FAQs <svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    <a href="{{BASE}}contact/">Contact <svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+  </nav>
+  <div class="drawer-foot">
+    <a class="btn btn-primary btn-block" href="tel:{{PHONE_TEL}}" data-track="call">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      Call {{PHONE}}
+    </a>
+    <a class="btn btn-ghost btn-block" href="https://wa.me/{{PHONE_WA}}" target="_blank" rel="noopener">Message on WhatsApp</a>
+  </div>
+</div>
+
+<!-- ================= HERO ================= -->
+<section class="hero s-dark" id="top">
+  <!-- HERO MEDIA: hero-01, a slow orbit of the van, crossfaded end-to-start so it
+       loops without a jump. To go back to a photo slider, restore three
+       .hero-slide divs here and the dots rebuild themselves. -->
+  <div class="hero-media" id="heroMedia">
+    <video class="hero-video" autoplay muted loop playsinline preload="auto"
+           poster="{{ASSET:hero_poster.jpg}}"
+           aria-label="The {{BUSINESS}} van parked outside a house being re-roofed">
+      <source src="{{ASSET:hero.mp4}}" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero-scrim"></div>
+
+  <div class="hero-in">
+    <span class="hero-logo logo-mark" style="background-image:{{VAR:logo.png}}" role="img" aria-label="{{BUSINESS}}"></span>
+    <h1>Roof repairs and re-roofing across <em>{{TOWN}}</em></h1>
+    <p class="hero-sub">Pitched and flat roofing, repairs, chimneys, leadwork and guttering. Free quotes, no obligation, and the site left clean when we go.</p>
+    <div class="hero-btns">
+      <a class="btn btn-primary" href="#contact">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></svg>
+        Get a free quote
+      </a>
+      <a class="btn btn-ghost" href="tel:{{PHONE_TEL}}" data-track="call">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        {{PHONE}}
+      </a>
+    </div>
+    <div class="hero-strip">
+      <span class="hero-chip"><svg class="icon" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>{{TOWN}} and the surrounding areas</span>
+      <span class="hero-chip"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>Repairs to full re-roofs</span>
+      <span class="hero-chip opt"><svg class="icon" viewBox="0 0 24 24"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>Domestic and commercial</span>
+    </div>
+  </div>
+  <div class="hero-dots" id="heroDots" aria-hidden="true"></div>
+</section>
+
+<!-- ================= TRUST ================= -->
+<section class="trust s-dark">
+  <div class="wrap" style="padding-inline:0">
+    <div class="trust-grid">
+      <div class="trust-item">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        <b>{{TOWN}} based</b><span>Our yard is in Hednesford, covering 20 miles of {{COUNTY}}</span>
+      </div>
+      <div class="trust-item">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg>
+        <b>Repairs to re-roofs</b><span>One team, from a slipped tile to a full strip and re-cover</span>
+      </div>
+      <div class="trust-item">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>
+        <b>Homes and commercial</b><span>Houses, bungalows, extensions and commercial roofs</span>
+      </div>
+      <div class="trust-item">
+        <svg class="icon" viewBox="0 0 24 24"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/><circle cx="12" cy="8" r="6"/></svg>
+        <b>Insured and guaranteed</b><span>Public liability insured, 10 year workmanship guarantee</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section class="sec s-light" id="services">
+  <div class="wrap">
+    <div class="center rv">
+      <span class="eyebrow">What we do</span>
+      <h2 class="title">Roofing services across {{TOWN}}</h2>
+      <p class="lede">From one slipped tile to a full strip and re-cover, plus the leadwork, flat roofing and guttering that goes with it.</p>
+    </div>
+    <div class="svc-grid">
+      <article class="svc rv">
+        <div class="svc-ico"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg></div>
+        <h3>Roof repairs</h3>
+        <p>Slipped tiles, leaks, storm damage and failed flashing put right, usually in a single visit.</p>
+      </article>
+      <article class="svc rv">
+        <div class="svc-ico"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
+        <h3>New roofs and re-roofing</h3>
+        <p>Stripped back to the rafters and rebuilt with breathable membrane, treated battens and new tiles.</p>
+      </article>
+      <article class="svc rv">
+        <div class="svc-ico"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 3v18"/><path d="M3 12h18"/></svg></div>
+        <h3>Flat roofing</h3>
+        <p>Fibreglass, EPDM rubber and felt systems for extensions, garages and dormers.</p>
+      </article>
+      <article class="svc rv">
+        <div class="svc-ico"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg></div>
+        <h3>Chimneys and leadwork</h3>
+        <p>Repointing, rebuilds, cowls and new lead flashing where the old work has given up.</p>
+      </article>
+      <article class="svc rv">
+        <div class="svc-ico"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3 2 5v15c0 .6.4 1 1 1h2c.6 0 1-.4 1-1V5Z"/><path d="M6 8h4"/><path d="M6 18h4"/><path d="m12 3-2 2v15c0 .6.4 1 1 1h2c.6 0 1-.4 1-1V5Z"/><path d="M14 8h4"/><path d="M14 18h4"/><path d="m20 3-2 2v15c0 .6.4 1 1 1h2c.6 0 1-.4 1-1V5Z"/></svg></div>
+        <h3>Fascias, soffits and guttering</h3>
+        <p>UPVC replacements that stop water tracking back down into the brickwork.</p>
+      </article>
+      <article class="svc rv">
+        <div class="svc-ico"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg></div>
+        <h3>Moss removal and maintenance</h3>
+        <p>Roof cleaning, gutter clearing and the small fixes that stop a much bigger bill later.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TRANSFORMATIONS ================= -->
+<section class="sec trans s-dark" id="transformations">
+  <div class="wrap">
+    <div class="center rv">
+      <span class="eyebrow">During and after</span>
+      <h2 class="title">How a re-roof goes on</h2>
+      <p class="lede">The first plays a slope being tiled from bare battens up. Drag the handle on the second to move between the roof mid job and the finished covering.</p>
+    </div>
+    <div class="zig">
+
+      <article class="zig-row rv">
+        <div class="zig-media">
+          <video class="ba-video" autoplay muted loop playsinline preload="auto"
+                 aria-label="Time lapse of a roof slope being tiled, from bare membrane and battens through to a finished covering">
+            <source src="{{ASSET:ba1.mp4}}" type="video/mp4">
+          </video>
+        </div>
+        <div class="zig-copy">
+          <span class="num">Job 01</span>
+          <h3>Stripped, felted, battened and re-tiled</h3>
+          <p>The old covering comes off, the roof is felted with a breathable membrane and battened at the right gauge, then the tiles go on course by course from the eaves up. The gauge staying constant all the way to the ridge is what keeps the courses straight and stops the slope drifting off line halfway up.</p>
+          <div class="zig-tags"><span>Stripped back</span><span>Breathable membrane</span><span>Treated battens</span><span>New tiles</span></div>
+        </div>
+      </article>
+
+      <article class="zig-row rv">
+        <div class="zig-media">
+          <div class="ba" data-ba>
+            <img src="{{ASSET:t2_before.jpg}}" alt="Breathable membrane and treated battens laid out with the first tiles going up the hip">
+            <div class="after-wrap"><img src="{{ASSET:t2_after.jpg}}" alt="Finished tiled roof with a clean hip and a bedded ridge under an open sky"></div>
+            <div class="ba-lbl b">During</div>
+            <div class="ba-lbl a">Finished</div>
+            <div class="ba-handle"><span class="ba-knob"><svg viewBox="0 0 24 24"><path d="m9 7-5 5 5 5"/><path d="m15 7 5 5-5 5"/></svg></span></div>
+          </div>
+        </div>
+        <div class="zig-copy">
+          <span class="num">Job 02</span>
+          <h3>Hips, valleys and ridges given the time</h3>
+          <p>Hips and valleys are where a roof lets go first, so that is where the hours go. Tiles are cut in tight along the hip, the ridge is bedded and pointed, and the slope is left running true from the eaves to the apex rather than drifting off line halfway up.</p>
+          <div class="zig-tags"><span>Hips cut in</span><span>Bedded ridge</span><span>Lead valleys</span><span>Clean lines</span></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section class="sec s-tint" id="gallery">
+  <div class="wrap">
+    <div class="center rv">
+      <span class="eyebrow">Our work</span>
+      <h2 class="title">Recent roofs</h2>
+      <p class="lede">Repairs, re-roofs, leadwork and flat roofing from around {{TOWN}}.</p>
+    </div>
+    <div class="gal rv" id="gal">
+      <figure class="big"><img loading="lazy" src="{{ASSET:g1.jpg}}" alt="Newly tiled hip roof with a bedded ridge and a chimney stack behind"><figcaption>Re-roof completed</figcaption></figure>
+      <figure><img loading="lazy" src="{{ASSET:g2.jpg}}" alt="Red clay tiled roof photographed along the ridge on a clear day"><figcaption>Clay tiled roof</figcaption></figure>
+      <figure><img loading="lazy" src="{{ASSET:g3.jpg}}" alt="Slate roof and stone chimney stacks on an older property"><figcaption>Slate and stone chimneys</figcaption></figure>
+      <figure><img loading="lazy" src="{{ASSET:g4.jpg}}" alt="New lead work dressed into a grey tiled roof beside a flat section"><figcaption>Leadwork and abutment</figcaption></figure>
+      <figure><img loading="lazy" src="{{ASSET:g5.jpg}}" alt="Finished tiled roof looking out across woodland under a grey sky"><figcaption>Tiled roof and ridge</figcaption></figure>
+      <figure class="big"><img loading="lazy" src="{{ASSET:g6.jpg}}" alt="Red tiled hip roof meeting a newly laid grey flat roof below it"><figcaption>Pitched and flat together</figcaption></figure>
+      <figure><img loading="lazy" src="{{ASSET:g7.jpg}}" alt="Lead flashing and soakers stepped into the side of a brick chimney"><figcaption>Chimney flashing renewed</figcaption></figure>
+      <figure><img loading="lazy" src="{{ASSET:g8.jpg}}" alt="Two red tiled roof slopes meeting along a shared ridge"><figcaption>Ridge and verge detail</figcaption></figure>
+      <figure><img loading="lazy" src="{{ASSET:g9.jpg}}" alt="Lead valley dressed between two slate slopes against stone brickwork"><figcaption>Lead valley</figcaption></figure>
+      <figure><img loading="lazy" src="{{ASSET:g10.jpg}}" alt="Grey tiled hip and valley with new lead work below the chimney"><figcaption>Hip and valley tiling</figcaption></figure>
+      <figure class="more"><img loading="lazy" src="{{ASSET:g11.jpg}}" alt="Stepped lead flashing at the base of a brick chimney on a red tiled roof"><figcaption>Chimney leadwork</figcaption></figure>
+      <figure class="more"><img loading="lazy" src="{{ASSET:g12.jpg}}" alt="Tiles cut and dressed neatly into a brick abutment wall"><figcaption>Abutment detail</figcaption></figure>
+      <figure class="more"><img loading="lazy" src="{{ASSET:g13.jpg}}" alt="Brown tiles run up to a brick gable with the scaffold still in place"><figcaption>Gable and scaffold</figcaption></figure>
+      <figure class="more"><img loading="lazy" src="{{ASSET:g14.jpg}}" alt="Freshly tiled roof slope with the scaffold boards still down"><figcaption>Tiling in progress</figcaption></figure>
+      <figure class="more"><img loading="lazy" src="{{ASSET:g15.jpg}}" alt="New tiles loaded out in stacks across the membrane at the end of the day"><figcaption>Loading out</figcaption></figure>
+      <figure class="more"><img loading="lazy" src="{{ASSET:g16.jpg}}" alt="Roof stripped back with the scaffold sheeted before the new covering goes on"><figcaption>Stripped and sheeted</figcaption></figure>
+      <figure class="more"><img loading="lazy" src="{{ASSET:g17.jpg}}" alt="Lead tray and flashing formed around a stone chimney above a flat roof"><figcaption>Lead tray</figcaption></figure>
+    </div>
+
+    <div class="work-cta rv">
+      <button class="btn btn-primary" id="workOpen" type="button">
+        <svg class="icon" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+        View all our work
+      </button>
+      <div class="work-count">
+        <svg class="icon" viewBox="0 0 24 24" style="width:15px;height:15px"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+        <span id="workCount">17</span> roof photographs
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY ================= -->
+<section class="sec why s-light" id="why">
+  <div class="wrap">
+    <div class="center rv">
+      <span class="eyebrow">Why choose us</span>
+      <h2 class="title">The bit you cannot see is the bit that matters</h2>
+      <p class="lede">Anyone can lay a tile. Whether the roof is still dry in five winters comes down to the membrane, the battens and the lead underneath it.</p>
+    </div>
+    <div class="why-grid">
+      <article class="why-card rv">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+        <h3>Sound underneath, not just on top</h3>
+        <p>New breathable membrane and treated battens on every re-roof. Tiles dropped back onto tired felt is a job you end up paying for twice.</p>
+      </article>
+      <article class="why-card rv">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg>
+        <h3>Leadwork done, not patched</h3>
+        <p>Chimneys, valleys and abutments get proper lead, dressed and fixed, rather than a smear of mastic that lasts one winter.</p>
+      </article>
+      <article class="why-card rv">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <h3>One team, start to finish</h3>
+        <p>The person who quotes the roof is on the roof. Nothing gets handed off to a subcontractor you have never met.</p>
+      </article>
+      <article class="why-card rv">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        <h3>Genuinely local</h3>
+        <p>Our yard is on Oaklands Industrial Estate in Hednesford, so across {{TOWN}} and the Chase we are minutes away rather than hours.</p>
+      </article>
+      <article class="why-card rv">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+        <h3>Photographs throughout</h3>
+        <p>You see what was wrong and what was done, including the parts of the roof you could never get up to yourself.</p>
+      </article>
+      <article class="why-card rv">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg>
+        <h3>Clean site, swept drive</h3>
+        <p>Sheeted down, waste taken away as we go, and the drive swept before we leave.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="sec s-light" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-media rv">
+        <div class="main"><img loading="lazy" src="{{ASSET:about1.jpg}}" alt="The {{BUSINESS}} van parked outside a scaffolded house"></div>
+        <div class="inset"><img loading="lazy" src="{{ASSET:about2.jpg}}" alt="Roofers stripping the old tiles from a roof before it is re-covered"></div>
+      </div>
+      <div class="about-copy rv">
+        <span class="eyebrow">Meet the owner</span>
+        <h2>{{BUSINESS}}</h2>
+        <p>{{BUSINESS}} is a roofing business working across {{TOWN}} and the counties around it. Repairs, full re-roofs, flat roofing, chimneys and leadwork, taken on and finished by the same people rather than passed around.</p>
+        <p>The name is the point of it. A roof is the one part of a house that is protecting everything underneath, and it only does that job properly if the membrane, the battens and the lead are right. That is where the hours go, even though none of it shows from the ground.</p>
+        <p>{{OWNER_FULL}} has been roofing for twenty five years and there are six of us working out of the Hednesford yard. We also run our own roofing supplies shop, which is why we can usually match a discontinued tile ourselves rather than joining the queue behind every other roofer waiting on a merchant. <a href="{{BASE}}about/" style="color:var(--accent)">More about us</a>.</p>
+        <div class="about-sign">
+          <span class="logo-mark logo-tile" style="background-image:{{VAR:logo.png}}" aria-hidden="true"></span>
+          <div>
+            <b>{{OWNER_FULL}}</b>
+            <span>Owner, {{BUSINESS}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= AREAS ================= -->
+<section class="sec areas s-brand" id="areas">
+  <div class="areas-bg" style="background-image:url('{{ASSET:areas.jpg}}')" role="img" aria-label="A newly tiled roof above the street it sits on"></div>
+  <div class="areas-scrim"></div>
+  <div class="wrap">
+    <div class="area-wrap">
+      <div class="rv">
+        <span class="eyebrow">Where we work</span>
+        <h2 class="title">Covering {{TOWN}}</h2>
+        <p class="lede">Around twenty miles from our yard in Hednesford, taking in Cannock Chase, most of south {{COUNTY}} and the north of the Black Country.</p>
+        <div class="hero-btns" style="justify-content:flex-start;margin-top:24px">
+          <a class="btn btn-primary" href="{{BASE}}areas-we-cover/">See all 21 areas we cover</a>
+        </div>
+      </div>
+      <div class="chips rv">
+        <span class="chip core"><svg class="icon" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>{{TOWN}}</span>
+        <span class="chip"><svg class="icon" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Hednesford</span>
+        <span class="chip"><svg class="icon" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Rugeley</span>
+        <span class="chip"><svg class="icon" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Burntwood</span>
+        <span class="chip"><svg class="icon" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Lichfield</span>
+        <span class="chip"><svg class="icon" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Penkridge</span>
+        <span class="chip"><svg class="icon" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Walsall</span>
+        <span class="chip"><svg class="icon" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Stafford</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="sec s-tint" id="contact">
+  <div class="wrap">
+    <div class="center rv">
+      <span class="eyebrow">Get in touch</span>
+      <h2 class="title">Tell us about your roof</h2>
+      <p class="lede">Fill this in and it opens WhatsApp with your details already written out.</p>
+    </div>
+    <div class="form-grid">
+      <div class="contact-list rv">
+        <a class="contact-row" href="tel:{{PHONE_TEL}}" data-track="call">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <div><small>Call or text</small><b>{{PHONE}}</b></div>
+        </a>
+        <a class="contact-row" href="mailto:{{EMAIL}}">
+          <svg class="icon" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <div><small>Email</small><b>{{EMAIL}}</b></div>
+        </a>
+        <div class="contact-row dupe">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div><small>Yard</small><b>Oaklands Ind Est, Hednesford WS12 2UZ</b></div>
+        </div>
+        <div class="contact-row dupe">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div><small>Coverage</small><b>{{TOWN}} and the surrounding areas</b></div>
+        </div>
+        <div class="contact-row">
+          <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <div><small>Opening hours</small><b>24 hours a day, 7 days a week</b></div>
+        </div>
+      </div>
+
+      <form id="quoteForm" class="rv" novalidate>
+        <div class="f2">
+          <label class="field"><span>Your name</span><input type="text" name="name" required autocomplete="name" placeholder="Jane Smith"></label>
+          <label class="field"><span>Phone</span><input type="tel" name="phone" required autocomplete="tel" placeholder="07000 000000"></label>
+        </div>
+        <div class="f2">
+          <label class="field"><span>Town or postcode</span><input type="text" name="area" autocomplete="postal-code" placeholder="Your town or postcode"></label>
+          <label class="field"><span>What do you need</span>
+            <select name="service">
+              <option>Roof repair or leak</option>
+              <option>New roof or re-roofing</option>
+              <option>Flat roofing</option>
+              <option>Chimney or leadwork</option>
+              <option>Fascias, soffits and guttering</option>
+              <option>Moss removal and maintenance</option>
+              <option>Something else</option>
+            </select>
+          </label>
+        </div>
+        <label class="field"><span>Tell us about the job</span><textarea name="detail" placeholder="What the roof is doing, roughly how old it is, and whether it is leaking now."></textarea></label>
+        <button class="btn btn-primary btn-block" type="submit">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></svg>
+          Send via WhatsApp
+        </button>
+        <p class="form-note">This opens WhatsApp with your message ready to send. Nothing is sent until you press send yourself.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FINAL CTA ================= -->
+<section class="sec cta s-dark">
+  <div class="cta-bg" style="background-image:{{VAR:hero2.jpg}}"></div>
+  <div class="cta-scrim"></div>
+  <div class="wrap rv">
+    <h2>Roof needing attention</h2>
+    <p>Send a couple of photographs and a rough idea of the problem, and you will get a straight answer on what it actually needs.</p>
+    <div class="hero-btns">
+      <a class="btn btn-cyan" href="tel:{{PHONE_TEL}}" data-track="call">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Call {{PHONE}}
+      </a>
+      <a class="btn btn-ghost" href="https://wa.me/{{PHONE_WA}}" target="_blank" rel="noopener">
+        <svg class="icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+        WhatsApp us
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="foot s-dark">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <span class="logo-mark" style="background-image:{{VAR:logo.png}}" role="img" aria-label="{{BUSINESS}}"></span>
+        <p>Roof repairs, re-roofing, flat roofing, chimneys, leadwork and guttering across {{TOWN}} and the surrounding areas. Domestic and commercial, taken on and finished by the same team.</p>
+        <div class="socials">
+          <a href="https://wa.me/{{PHONE_WA}}" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="{{BASE}}services/roof-repairs/">Roof repairs</a></li>
+          <li><a href="{{BASE}}services/roof-replacement/">Roof replacement</a></li>
+          <li><a href="{{BASE}}services/fascias-soffits-and-guttering/">Fascias, soffits and guttering</a></li>
+          <li><a href="{{BASE}}services/roof-cleaning/">Roof cleaning</a></li>
+          <li><a href="{{BASE}}services/conservatory-warm-roofs/">Conservatory warm roofs</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Areas covered</h4>
+        <ul>
+          <li><a href="{{BASE}}roofers-in-cannock/">Cannock</a></li>
+          <li><a href="{{BASE}}roofers-in-hednesford/">Hednesford</a></li>
+          <li><a href="{{BASE}}roofers-in-rugeley/">Rugeley</a></li>
+          <li><a href="{{BASE}}roofers-in-lichfield/">Lichfield</a></li>
+          <li><a href="{{BASE}}roofers-in-walsall/">Walsall</a></li>
+          <li><a href="{{BASE}}areas-we-cover/">All 21 areas we cover</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Get in touch</h4>
+        <ul>
+          <li><a href="tel:{{PHONE_TEL}}" data-track="call">{{PHONE}}</a></li>
+          <li><a href="mailto:{{EMAIL}}">{{EMAIL}}</a></li>
+          <li><a href="https://wa.me/{{PHONE_WA}}" target="_blank" rel="noopener">WhatsApp us</a></li>
+          <li><a href="{{BASE}}contact/">Contact and opening hours</a></li>
+        </ul>
+        <div class="accred">Public liability insured. 10 year workmanship guarantee. Family run, 25 years.</div>
+      </div>
+    </div>
+    <div class="foot-bar">
+      <small>Copyright 2026 {{BUSINESS}}. All rights reserved. <a href="{{BASE}}privacy-policy/">Privacy</a> / <a href="{{BASE}}terms/">Terms</a></small>
+      <small>Website by <a href="https://innov8workflows.co.uk" target="_blank" rel="noopener">Innov8 Workflows</a></small>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= WHATSAPP FLOAT ================= -->
+<a class="wa" href="https://wa.me/{{PHONE_WA}}" target="_blank" rel="noopener" aria-label="Message us on WhatsApp" data-track="whatsapp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+</a>
+
+<!-- ================= OUR WORK (full panel) ================= -->
+<div class="work" id="work" role="dialog" aria-modal="true" aria-labelledby="workTitle" aria-hidden="true">
+  <header class="work-top">
+    <div class="work-top-in">
+      <div class="work-id">
+        <span class="logo-mark" style="background-image:{{VAR:logo.png}}" aria-hidden="true"></span>
+        <div>
+          <b id="workTitle">Our Work</b>
+          <span>Roofing across {{TOWN}}, Hednesford and 20 miles of {{COUNTY}}</span>
+        </div>
+      </div>
+      <button class="work-close" id="workClose" type="button">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        <span class="lbl">Close</span>
+      </button>
+    </div>
+  </header>
+  <div class="work-body">
+    <div class="work-grid" id="workGrid"></div>
+    <div class="work-foot">
+      <a class="btn btn-primary" href="#contact" id="workQuote">Get a quote for your roof</a>
+      <a class="btn btn-ghost" href="tel:{{PHONE_TEL}}" data-track="call" style="color:#EAF0E8;border-color:rgba(255,255,255,.26)">{{PHONE}}</a>
+    </div>
+  </div>
+</div>
+
+<!-- ================= LIGHTBOX ================= -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Project photo">
+  <button class="lb-close" id="lbClose" aria-label="Close"><svg class="icon" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+  <button class="lb-nav prev" id="lbPrev" aria-label="Previous"><svg class="icon" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
+  <img id="lbImg" src="" alt="">
+  <button class="lb-nav next" id="lbNext" aria-label="Next"><svg class="icon" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var WA = "{{PHONE_WA}}";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- nav ---------- */
+  var nav = document.getElementById("nav");
+  var onScroll = function(){ nav.classList.toggle("solid", window.scrollY > 40); };
+  onScroll(); window.addEventListener("scroll", onScroll, {passive:true});
+
+  var drawer = document.getElementById("drawer"), burger = document.getElementById("burger");
+  var openD = function(o){
+    drawer.classList.toggle("open", o);
+    burger.setAttribute("aria-expanded", o ? "true" : "false");
+    document.body.style.overflow = o ? "hidden" : "";
+  };
+  burger.addEventListener("click", function(){ openD(true); });
+  document.getElementById("closeDrawer").addEventListener("click", function(){ openD(false); });
+  drawer.querySelectorAll("nav a").forEach(function(a){ a.addEventListener("click", function(){ openD(false); }); });
+
+  /* ---------- hero slider (swap for a video by replacing #heroMedia contents) ---------- */
+  var slides = Array.prototype.slice.call(document.querySelectorAll(".hero-slide"));
+  var dotsBox = document.getElementById("heroDots"), hi = 0, heroTimer;
+  if (slides.length > 1){
+    slides.forEach(function(_, i){
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = i === 0 ? "on" : "";
+      b.setAttribute("aria-label", "Slide " + (i+1));
+      b.addEventListener("click", function(){ goHero(i); restartHero(); });
+      dotsBox.appendChild(b);
+    });
+    var goHero = function(n){
+      hi = (n + slides.length) % slides.length;
+      slides.forEach(function(s, i){ s.classList.toggle("on", i === hi); });
+      dotsBox.querySelectorAll("button").forEach(function(b, i){ b.classList.toggle("on", i === hi); });
+    };
+    var restartHero = function(){
+      clearInterval(heroTimer);
+      heroTimer = setInterval(function(){ goHero(hi + 1); }, 6000);
+    };
+    restartHero();
+  } else if (dotsBox) { dotsBox.style.display = "none"; }
+
+  /* ---------- before / after sliders ---------- */
+  document.querySelectorAll("[data-ba]").forEach(function(ba){
+    var drag = false;
+    var set = function(clientX){
+      var r = ba.getBoundingClientRect();
+      var p = Math.min(100, Math.max(0, ((clientX - r.left) / r.width) * 100));
+      ba.style.setProperty("--pos", p.toFixed(2) + "%");
+    };
+    var down = function(e){ drag = true; set(e.touches ? e.touches[0].clientX : e.clientX); };
+    var move = function(e){
+      if (!drag) return;
+      if (e.touches) { set(e.touches[0].clientX); }
+      else { e.preventDefault(); set(e.clientX); }
+    };
+    var up = function(){ drag = false; };
+    ba.addEventListener("mousedown", down);
+    ba.addEventListener("touchstart", down, {passive:true});
+    window.addEventListener("mousemove", move);
+    window.addEventListener("touchmove", move, {passive:true});
+    window.addEventListener("mouseup", up);
+    window.addEventListener("touchend", up);
+    ba.addEventListener("click", function(e){ set(e.clientX); });
+  });
+
+  /* ---------- gallery, Our Work panel and lightbox ---------- */
+  var gal = document.getElementById("gal");
+  var galFigs = Array.prototype.slice.call(gal.querySelectorAll("figure"));
+  var figs = galFigs.map(function(f){ return f.querySelector("img"); });
+  var countEl = document.getElementById("workCount");
+  if (countEl) countEl.textContent = figs.length;
+
+  var lb = document.getElementById("lb"), lbImg = document.getElementById("lbImg"), li = 0;
+  var work = document.getElementById("work"), workGrid = document.getElementById("workGrid");
+  var lockScroll = function(on){ document.body.style.overflow = on ? "hidden" : ""; };
+
+  var openLb = function(i){
+    li = (i + figs.length) % figs.length;
+    lbImg.src = figs[li].src;
+    lbImg.alt = figs[li].alt;
+    lb.classList.add("open");
+    lockScroll(true);
+  };
+  var closeLb = function(){
+    lb.classList.remove("open");
+    // the Our Work panel is its own scroll container, so only release the page
+    // scroll lock if that panel is not still open behind the lightbox
+    lockScroll(work.classList.contains("open"));
+  };
+  galFigs.forEach(function(f, i){ f.addEventListener("click", function(){ openLb(i); }); });
+  document.getElementById("lbClose").addEventListener("click", closeLb);
+  document.getElementById("lbPrev").addEventListener("click", function(e){ e.stopPropagation(); openLb(li - 1); });
+  document.getElementById("lbNext").addEventListener("click", function(e){ e.stopPropagation(); openLb(li + 1); });
+  lb.addEventListener("click", function(e){ if (e.target === lb) closeLb(); });
+
+  /* the panel is populated once, on first open, by cloning the gallery figures.
+     Cloning copies the data URI by reference, so nothing is embedded twice. */
+  var workBuilt = false;
+  var buildWork = function(){
+    if (workBuilt) return;
+    galFigs.forEach(function(f, i){
+      var c = f.cloneNode(true);
+      c.className = "";
+      c.addEventListener("click", function(){ openLb(i); });
+      workGrid.appendChild(c);
+    });
+    workBuilt = true;
+  };
+  var openWork = function(){
+    buildWork();
+    work.classList.add("open");
+    work.setAttribute("aria-hidden", "false");
+    lockScroll(true);
+    work.querySelector(".work-body").scrollTop = 0;
+    document.getElementById("workClose").focus();
+  };
+  var closeWork = function(){
+    work.classList.remove("open");
+    work.setAttribute("aria-hidden", "true");
+    lockScroll(false);
+  };
+  document.getElementById("workOpen").addEventListener("click", openWork);
+  document.getElementById("workClose").addEventListener("click", closeWork);
+  document.getElementById("workQuote").addEventListener("click", closeWork);
+
+  document.addEventListener("keydown", function(e){
+    if (lb.classList.contains("open")){
+      if (e.key === "Escape") closeLb();
+      if (e.key === "ArrowLeft") openLb(li - 1);
+      if (e.key === "ArrowRight") openLb(li + 1);
+      return;
+    }
+    if (e.key === "Escape" && work.classList.contains("open")) closeWork();
+  });
+
+  /* ---------- contact form to WhatsApp ---------- */
+  document.getElementById("quoteForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    var f = e.target;
+    var v = function(k){ return (f.elements[k] && f.elements[k].value || "").trim(); };
+    if (!v("name") || !v("phone")){
+      var bad = !v("name") ? f.elements.name : f.elements.phone;
+      bad.focus();
+      bad.style.borderColor = "#E4574C";
+      setTimeout(function(){ bad.style.borderColor = ""; }, 2200);
+      return;
+    }
+    var lines = [
+      "Hi {{BUSINESS}}, I would like a quote.",
+      "",
+      "Name: " + v("name"),
+      "Phone: " + v("phone"),
+      "Area: " + (v("area") || "Not given"),
+      "Service: " + v("service"),
+      "",
+      "Details: " + (v("detail") || "Not given")
+    ];
+    var url = "https://wa.me/" + WA + "?text=" + encodeURIComponent(lines.join("\n"));
+    var win = window.open(url, "_blank");
+    if (!win) window.location.href = url;
+  });
+
+  /* ---------- pause timers while the tab is hidden ---------- */
+  document.addEventListener("visibilitychange", function(){
+    if (document.hidden){ clearInterval(heroTimer); }
+    else if (typeof restartHero === "function") restartHero();
+  });
+
+  /* ---------- reveal on scroll ---------- */
+  if ("IntersectionObserver" in window && !reduce){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, {rootMargin:"0px 0px -8% 0px", threshold:0.06});
+    document.querySelectorAll(".rv").forEach(function(el, i){
+      el.style.transitionDelay = ((i % 4) * 60) + "ms";
+      io.observe(el);
+    });
+  } else {
+    document.querySelectorAll(".rv").forEach(function(el){ el.classList.add("in"); });
+  }
+})();
+</script>
