@@ -159,6 +159,47 @@ module.exports = [
   },
 
   {
+    /* NOT one of the five services on submission #17. Added 2026-09-06 on Jay's
+       instruction, and the evidence was already strong: the demo homepage
+       advertises flat roofing, batch 1 showed it, and six of the eighteen batch 2
+       photographs are of it including a commercial roof. Still worth confirming
+       the full service list with Kevin rather than inferring it from photographs. */
+    slug: 'flat-roofing',
+    name: 'Flat roofing',
+    h1: 'Flat roofing in {{TOWN}} and across {{COUNTY}}',
+    title: 'Flat Roofing in {{TOWN}} | {{BUSINESS}}',
+    desc: 'EPDM rubber, fibreglass and felt flat roofs for extensions, garages, dormers and commercial buildings across {{TOWN}} and {{COUNTY}}. Call {{PHONE}}.',
+    lede: 'A flat roof is not actually flat, and most of the ones that fail were treated as though it were.',
+    inShort: 'We lay EPDM rubber, fibreglass and felt flat roofs across {{TOWN}} and the surrounding towns, on extensions, garages, dormers, porches and commercial buildings. A flat roof needs a fall to shed the water, a proper upstand where it meets a wall, and a decent edge trim. Get those three right and it lasts decades. Get any one of them wrong and it ponds, tracks back into the brickwork and fails early, however good the membrane was.',
+    signsTitle: 'Signs a flat roof needs replacing',
+    signs: [
+      'Water still sitting on the roof a couple of days after rain',
+      'Blisters, bubbles or splits in the covering, particularly along the seams',
+      'The surface has gone brittle and cracks when you press it',
+      'A damp patch on the ceiling below, often some way from where the leak actually is',
+      'The upstand where the roof meets a wall has pulled away or been patched with mastic',
+      'Moss or silt collecting in one corner, which means the fall is wrong',
+    ],
+    processTitle: 'How we lay a flat roof',
+    steps: [
+      ['Strip it and check the deck', 'The old covering comes off and the timber deck underneath gets looked at properly. A new membrane laid over a soft deck will telegraph every soft spot and fail there first.'],
+      ['Get the falls right', 'Firrings or tapered insulation so the water actually runs to the outlet instead of sitting in the middle. This is the step that decides whether the roof lasts, and it is the one most often skipped.'],
+      ['Insulate where it belongs', 'On a warm deck the insulation sits above the deck rather than between the joists. That keeps the structure warm and stops condensation forming inside the build up where you will never see it.'],
+      ['Lay the membrane', 'EPDM rubber in a single sheet with no seams suits most domestic roofs. Fibreglass gives a harder surface where a roof gets walked on. Modern felt is far better than its reputation and is often right on a bigger or more complicated roof. We will tell you which suits yours and why, rather than only ever fitting the one we like.'],
+      ['Detail the edges and upstands', 'Trims, drips and upstands dressed properly at every edge and every abutment. Flat roofs almost never fail in the middle. They fail where they meet something else.'],
+    ],
+    faqs: [
+      ['Which is best, EPDM, fibreglass or felt?', 'It depends on the roof. EPDM goes down as a single sheet with no seams, which suits most domestic extensions. Fibreglass gives a harder wearing surface where the roof gets walked on. Modern felt is a great deal better than its reputation and is often the right answer on a larger or more complicated roof. We will explain which we would use on yours and why.'],
+      ['How long should a flat roof last?', 'A properly laid one, decades. The ones that fail after five years almost always failed on the falls or the detailing rather than the membrane, which is exactly why we spend the time on those.'],
+      ['Can you fit a rooflight or a lantern?', 'Yes, and we do regularly. It is worth deciding before the roof goes on, because the upstand wants building into the structure rather than cutting in afterwards.'],
+      ['Do you take on commercial flat roofs?', 'Yes. Most of our flat roofing is domestic extensions and garages, but we do larger commercial roofs too. Ring and describe it and we will tell you honestly whether it suits us.'],
+      ['Why does water sit on my flat roof?', 'Because the fall is wrong, or the deck has settled. Ponding is the clearest sign a flat roof was not built properly, and it is not something a patch will fix.'],
+      ['Can you repair a flat roof instead of replacing it?', 'Sometimes, and we will say so where a repair genuinely solves it. But patching a roof whose falls are wrong only moves the problem along, and we would rather tell you that than take the money twice.'],
+    ],
+    gallery: ['v2-1', 'v2-12', 'v2-9', 'v2-18', 'v2-11', 'v2-10'],
+  },
+
+  {
     slug: 'conservatory-warm-roofs',
     name: 'Conservatory warm roofs',
     h1: 'Conservatory warm roofs in {{TOWN}}',

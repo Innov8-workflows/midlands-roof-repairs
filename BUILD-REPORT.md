@@ -62,12 +62,12 @@ STAGING_BASE=Midland-Roof-Shield node generate.js && STAGING_BASE=Midland-Roof-S
 
 ---
 
-## Pages: 36
+## Pages: 37
 
 | Type | Count | Paths |
 |---|---|---|
 | Homepage | 1 | `/` - the demo, preserved |
-| Service | 5 | `/services/<slug>/` |
+| Service | 6 | `/services/<slug>/` |
 | Area | 21 | `/roofers-in-<town>/` |
 | Hubs | 4 | `/services/` `/areas-we-cover/` `/our-work/` `/faqs/` |
 | Company | 2 | `/about/` `/contact/` |
@@ -77,10 +77,14 @@ STAGING_BASE=Midland-Roof-Shield node generate.js && STAGING_BASE=Midland-Roof-S
 786 words per generated page on average. 35 URLs in `sitemap.xml`.
 Crawled all 56 internal URLs and assets from `/` - **no broken links**.
 
-### Services (5) - exactly what Kevin listed
+### Services (6)
 
 `roof-repairs` · `roof-replacement` · `fascias-soffits-and-guttering` ·
-`roof-cleaning` · `conservatory-warm-roofs`
+`roof-cleaning` · `conservatory-warm-roofs` · `flat-roofing`
+
+The first five are exactly what Kevin listed on submission #17. **`flat-roofing`
+was added on 2026-09-06 on Jay's instruction** and is not on the form - see the
+batch 2 section at the end.
 
 ### Areas (21) - `primaryAreas` was the single string "20 mile radius"
 
@@ -141,8 +145,9 @@ these are published. They now appear on every page:
 | Guarantee | 10 years | **No** - Jay attested |
 
 **£100,000 public liability looks wrong.** Trade cover is normally £1m-£5m and
-plenty of domestic customers ask for £1m as a minimum. It is worth checking
-against the actual certificate before go-live - it reads like a missing zero. The
+plenty of domestic customers ask for £1m as a minimum. It reads like a missing
+zero, and the site is now live and indexable, so this wants checking against the
+actual certificate. The
 figure is currently in `site.config.js` `claims.insured.amount` but is **not
 printed anywhere on the site**; pages say "public liability insured" without the
 amount, so correcting it is a one-line change with no copy rewrite.
@@ -156,9 +161,9 @@ To pull all of this back: empty `claims` in `site.config.js` and re-run.
 
 | # | What | Why it matters |
 |---|---|---|
-| 1 | **No domain.** `missing[]` lists "Preferred website address" | `origin` and `base` in `site.config.js` currently point at the GitHub Pages preview. Every canonical, `og:url` and schema `@id` builds from those two lines. Change them and re-run at go-live. |
+| 1 | ~~No domain~~ **RESOLVED** | Live on `midlandroofshield.co.uk` since 2026-09-06. `origin` now points at it. |
 | 2 | **Reviews are off the site entirely** | `ratings.google` says 5.0 from 50, but `gbp` is empty so there is nothing to link to. Per your call on 2026-09-06 there is no `/reviews/` page, no review badges and no `aggregateRating`. Send a live profile URL and all three come back. |
-| 3 | **Services mismatch** | Kevin listed 5. The demo homepage still advertises **flat roofing** and **chimneys and leadwork**, and the gallery plainly shows him doing both, but he did not list them so they have no service page. Ask him whether they belong on the list. |
+| 3 | **Services mismatch, partly resolved** | `flat-roofing` now has a page. **Chimneys and leadwork still does not** - the homepage advertises it and batch 1 shows plenty of it, but it is not on Kevin's list. The real fix is confirming the full service list with him rather than inferring it from photographs. |
 | 4 | **"24 hours" needs confirming** | Every page now says 24 hours a day, 7 days a week, because that is what the form said. Worth checking it means a genuine call out and not an answerphone. |
 | 5 | **Kevin's story is two words** | `story` was "Family business". The about page builds on that plus years, team size and the supplies shop, and does not pretend to more. Ten minutes on the phone would improve it a lot. |
 | 6 | **No logo or photos were uploaded** | `missing[]` lists both. Not a problem - the demo already had them and the build-out reuses them - but it is why there are no new images. |
@@ -246,3 +251,55 @@ build-pages.js        the page writers
 preview.js            local server, with mp4 range support
 _site/                output - NEVER hand-edit, it is regenerated
 ```
+
+---
+
+## Batch 2 and the homepage media, 2026-09-06
+
+Kevin sent 18 more photographs (`assets-v2/`), camera files this time rather than
+phone screenshots, and mostly the two subjects batch 1 was thinnest on.
+
+**Flat roofing is now a service page.** `/services/flat-roofing/` was added on
+Jay's instruction. It was never on submission #17, but the homepage advertised it,
+batch 1 showed it and six of these eighteen photographs are of it, including a
+commercial roof with dome rooflights. **The full service list is still worth
+confirming with Kevin rather than inferring from photographs** - chimneys and
+leadwork is in exactly the same position and still has no page.
+
+Where the photographs went:
+
+| Page | Photos |
+|---|---|
+| `/our-work/` | all 18, taking it from 17 to 35 |
+| `/services/conservatory-warm-roofs/` | 6 - it was borrowing generic roof shots because batch 1 had no conservatory work at all |
+| `/services/flat-roofing/` | 6 |
+| `/services/roof-replacement/`, `/services/fascias-soffits-and-guttering/` | one each that actually shows the subject |
+| Homepage gallery | all 18, as `.more` |
+
+`.more` is hidden in the homepage grid but still cloned into the "View all our
+work" panel and counted, so the grid keeps exactly the 10 visible photographs it
+converted on while the panel goes 17 to 35. Promoting any of the new photographs
+into the visible 10 is a deliberate change to that layout and has not been done.
+
+### The homepage media was extracted from base64
+
+This is the change that made the rest possible. The kit inlines every asset as a
+data: URI, which is right for a demo you email and wrong for a live site: the
+homepage was 3.85 MB, over the client budget, neither video could be range-seeked,
+and every photograph added cost 1.3x its size in page weight.
+
+`build-pages.js` now swaps each data: URI back to its file path by matching on
+content. Nothing is re-encoded and no video is replaced - the same bytes,
+addressed differently.
+
+| | before | after |
+|---|---|---|
+| Homepage | 3.85 MB | **0.09 MB** |
+| Whole site | 4.45 MB | **0.91 MB** of a 2 MB budget |
+| `check.js` client mode | 2 problems | **passes** |
+
+Verified rather than assumed: the extracted homepage was rendered against the
+original base64 one at the same viewport and compared - identical page height
+(8675px), identical image counts, **SSIM 0.9909**, and zero failed requests. The
+residual is two video frames not decoding bit-identically between runs. Live load
+time is now about 1.0s for the homepage.

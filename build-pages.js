@@ -117,6 +117,39 @@ home = home.replace('</title>', '</title>\n<link rel="canonical" href="' + ORIGI
     homeSchema.map(s => '<script type="application/ld+json">' + JSON.stringify(s) + '</script>').join('\n') + '\n</head>');
 }
 
+/* ---------------------------------------------------- base64 -> real files --
+ * The kit engine inlines every asset as a base64 data: URI, which is right for a
+ * single-file demo you email to someone and wrong for a live site. It made the
+ * homepage 3.85 MB, put it over the 2 MB client budget, stopped either video
+ * being range-seekable, and meant adding a photograph cost 1.3x its file size in
+ * page weight.
+ *
+ * Every asset is already sitting in _site/assets/ as a real file for the other
+ * pages to use, so this swaps each data: URI back to its file path by matching
+ * on content. Nothing is re-encoded and no video is replaced - it is the same
+ * bytes, addressed differently. The markup, the section order, the hero and both
+ * videos are untouched.
+ *
+ * Must run BEFORE the STAGING rewrite below, so the paths it produces get the
+ * subfolder prefix too. */
+const MIME = { '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png', '.mp4': 'video/mp4' };
+{
+  const before = Buffer.byteLength(home);
+  let swapped = 0;
+  for (const f of fs.readdirSync(ASSETS)) {
+    const mime = MIME[path.extname(f).toLowerCase()];
+    if (!mime) continue;
+    const needle = 'data:' + mime + ';base64,' + fs.readFileSync(path.join(ASSETS, f)).toString('base64');
+    if (!home.includes(needle)) continue;
+    home = home.split(needle).join(asset(f));
+    swapped++;
+  }
+  const after = Buffer.byteLength(home);
+  console.log(`  homepage: ${swapped} assets un-inlined, ${(before / 1048576).toFixed(2)} MB -> ${(after / 1048576).toFixed(2)} MB`);
+  const left = (home.match(/data:(image|video)\/[a-z0-9]+;base64,/g) || []).length;
+  if (left) console.log(`  WARNING: ${left} base64 payload(s) still inline - an asset in the page is not in _src/assets`);
+}
+
 if (STAGING) {
   home = home.replace('</title>', '</title>\n<meta name="robots" content="noindex,nofollow">');
   /* The homepage is copied rather than regenerated, so its root-absolute hrefs
