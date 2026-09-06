@@ -39,11 +39,10 @@
     { "pattern": "www.midlandroofshield.co.uk", "custom_domain": true }
   ],
 
-  // TRUE ONLY UNTIL THE APEX SERVES. A workers.dev URL is how the site gets
-  // checked before DNS moves. Flip to false and redeploy the moment the real
-  // domain is up, or a second complete copy of the site stays published on
-  // workers.dev competing with the real domain in search.
-  "workers_dev": true,
+  // Went live on the real domain 2026-09-06, so this is off. Leaving it true
+  // publishes a second complete copy of the site on workers.dev, competing with
+  // midlandroofshield.co.uk in search.
+  "workers_dev": false,
 
   // Preview URLs would republish the site on yet another hostname per version.
   "preview_urls": false

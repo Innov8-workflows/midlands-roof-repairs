@@ -1,7 +1,53 @@
 # Midland Roof Shield - build-out report
 
 Submission **#17**, fetched 2026-09-06 into `_source/`. Built 2026-09-06.
-**Not deployed.**
+
+## LIVE at https://midlandroofshield.co.uk
+
+Went live 2026-09-06 on Cloudflare Workers. GoDaddy registration, Cloudflare
+nameservers (`chin` / `cleo`), assets-only Worker `midland-roof-shield`.
+
+```bash
+node generate.js && npx wrangler deploy     # the whole redeploy
+```
+
+Repo: <https://github.com/Innov8-workflows/midlands-roof-repairs>
+Deploy clone: `C:\Users\Jay\Projects\midland-roof-shield`
+
+### What changed at go-live
+
+- `origin` moved from the GitHub Pages preview to `https://midlandroofshield.co.uk`.
+  It is the only place the hostname appears, so every canonical, og:url and
+  schema @id rebuilt from it.
+- Both GoDaddy parking A records, the www CNAME and `_domainconnect` were deleted
+  **before** deploying - that is what avoids the 100117 custom-domain conflict.
+  The `_dmarc` TXT was kept: free anti-spoofing on a domain with no mail.
+- Cloudflare's "block AI training in robots.txt" left OFF. The Worker serves its
+  own robots.txt naming the sitemap, and the "In short" blocks exist precisely so
+  answer engines can lift them.
+- Always Use HTTPS turned on. It is off by default.
+- www to apex 301 with **Preserve query string** ticked, so UTM tags survive on
+  any ad link pointing at www. Cloudflare's "this rule may not apply, www is not
+  proxied" warning is a false positive - www is proxied via the Worker custom
+  domain. Its offer to create a proxied DNS record must be refused; that is the
+  100117 conflict again.
+- `workers_dev: false` once the apex served. The workers.dev URL now 404s.
+
+### Verified on the live domain
+
+23 routes 200 · http 301 to https · www 301 to apex preserving `?utm_source` ·
+`/services` 307 to `/services/` · real 404 · all six security headers · cert
+`CN=midlandroofshield.co.uk` from Google Trust Services, expires 2026-12-05.
+
+14 pages through headless Chrome: one h1 each, canonicals correct, every JSON-LD
+block parses, both homepage videos actually advancing, and **zero CSP violations,
+zero JS errors, no 4xx subresources**.
+
+> If it looks dead from a machine that visited while the domain was parked, that
+> is local DNS cache still holding GoDaddy's parking IP, which has no certificate
+> for this domain - it shows as ERR_SSL_UNRECOGNIZED_NAME_ALERT, not a 404. Fix
+> with `ipconfig /flushdns`, and in Chrome `chrome://net-internals/#dns` clear
+> host cache. It ages out on its own for everyone else.
 
 ```
 node generate.js      # writes _site/
