@@ -85,6 +85,45 @@ const gallery = [
   ['g17', 'Lead tray and flashing formed around a stone chimney above a flat roof', 'Lead tray'],
 ];
 
+/* Batch 2, sent by Kevin 2026-09-06 (assets-v2/). Proper camera photographs this
+ * time rather than phone screenshots, and mostly the two subjects the first batch
+ * was thinnest on: conservatory roofs and flat roofing.
+ *
+ * `subject` routes each photo to the service page it belongs on. 'flat' has NO
+ * service page - flat roofing is not one of the five services Kevin listed, even
+ * though the homepage advertises it and six of these eighteen photographs are of
+ * it. Flagged in BUILD-REPORT.md; those images appear on /our-work/ only until
+ * that is resolved.
+ *
+ * Alt text describes what is visibly in the frame. Where it is not possible to
+ * tell from a photograph whether a tiled conservatory roof is a full warm roof
+ * build, it is described as a tiled roof rather than asserting the construction.
+ */
+const galleryV2 = [
+  ['v2-1',  'flat',  'New flat roof with a glass roof lantern set into it', 'Flat roof and lantern'],
+  ['v2-2',  'warm',  'Conservatory with a new tiled roof and white uPVC frames', 'Conservatory re-roofed'],
+  ['v2-3',  'warm',  'Tiled conservatory roof seen from the side, run down to the gutter line', 'Conservatory roof'],
+  ['v2-4',  'warm',  'Rear of a house with a newly tiled conservatory roof and block paved patio', 'Conservatory and patio'],
+  ['v2-5',  'other', 'Brick porch with a new tiled roof and a white front door', 'Porch roof'],
+  ['v2-6',  'other', 'Dry verge where a newly tiled roof meets the brickwork of the house', 'Dry verge detail'],
+  ['v2-7',  'warm',  'Close up of a tiled conservatory roof hip against brickwork', 'Hip detail'],
+  ['v2-8',  'warm',  'Tiled conservatory roof photographed from the garden', 'Finished conservatory roof'],
+  ['v2-9',  'flat',  'Large commercial flat roof with dome rooflights and brick parapets', 'Commercial flat roof'],
+  ['v2-10', 'flat',  'Flat roof running across a terrace of properties, seen from above', 'Flat roof from above'],
+  ['v2-11', 'flat',  'Flat roof with rooflights overlooking a garden', 'Flat roof and rooflights'],
+  ['v2-12', 'flat',  'Newly laid flat roof meeting the brickwork below leaded windows', 'New flat roof'],
+  ['v2-13', 'warm',  'Bungalow with a bay conservatory under a new dark tiled roof', 'Bay conservatory roof'],
+  ['v2-14', 'warm',  'Porch with a new tiled roof and a lit doorway', 'Porch and canopy'],
+  ['v2-15', 'warm',  'Rear of a house with a white framed conservatory and a new roof', 'Conservatory rear'],
+  ['v2-16', 'other', 'Roof window set into a newly tiled dark roof above new guttering', 'Roof window'],
+  ['v2-17', 'warm',  'Brick garden room with a glazed gable end and insulation boards ready on the patio', 'Garden room in progress'],
+  ['v2-18', 'flat',  'Modern flat roofed brick extension with dark fascia and bifold doors', 'Flat roof extension'],
+];
+
+/* every photo on the site, batch 1 then batch 2, for /our-work/ */
+const galleryAll = gallery.concat(galleryV2.map(([id, , alt, cap]) => [id, alt, cap]));
+const v2By = s => galleryV2.filter(x => x[1] === s).map(x => x[0]);
+
 const about = {
   lede: 'A family roofing business working out of Hednesford, twenty five years in and six of us on the books.',
   paras: [
@@ -100,4 +139,4 @@ const about = {
   outlaw: 'Kevin is also part of Roofing Outlaw, a community of roofers who share work and standards with each other. It is not a trade body or an accreditation, and we would not present it as one, but it is a good sign of a roofer who cares what other roofers think of their work.',
 };
 
-module.exports = { contact, reviews, sharedAreaFaqs, generalFaqs, gallery, about };
+module.exports = { contact, reviews, sharedAreaFaqs, generalFaqs, gallery, galleryV2, galleryAll, v2By, about };

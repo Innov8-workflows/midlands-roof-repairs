@@ -85,7 +85,7 @@ module.exports = [
       ['Do you handle the scaffolding?', 'Yes, and it is in the written price from the start rather than appearing later as an extra.'],
       ['What happens if you find rotten timber?', 'We stop, photograph it, and tell you what it will cost to put right before we carry on. Nobody likes that phone call, but it is a great deal better than finding out afterwards.'],
     ],
-    gallery: ['g13', 'g14', 'g1'],
+    gallery: ['g13', 'g14', 'v2-16', 'g1'],
   },
 
   {
@@ -120,7 +120,7 @@ module.exports = [
       ['Can you clear the gutters instead?', 'Yes, if that is genuinely all it needs. Plenty of overflowing gutters are just full, and we would rather clear them and tell you the roofline has years left in it.'],
       ['How long does it take?', 'Most houses are a day or two once the scaffold is up. Kevin will give you a firm answer when he has seen it.'],
     ],
-    gallery: ['g12', 'g4', 'g10'],
+    gallery: ['v2-16', 'g12', 'g4'],
   },
 
   {
@@ -190,6 +190,8 @@ module.exports = [
       ['Can you match the tiles to the house?', 'Usually. Having our own supplies shop helps here more than anywhere, because matching an existing roof is exactly the job that stalls on availability.'],
       ['How long does it take?', 'Most conservatories are a matter of days rather than weeks, but it depends on size and finish. You get a realistic timescale in the written quote.'],
     ],
-    gallery: ['g6', 'g16', 'g3'],
+    /* batch 2 gave this page its own subject matter - it was borrowing generic
+       roof photographs before because batch 1 had no conservatory work in it */
+    gallery: ['v2-2', 'v2-13', 'v2-8', 'v2-17', 'v2-4', 'v2-14'],
   },
 ];
