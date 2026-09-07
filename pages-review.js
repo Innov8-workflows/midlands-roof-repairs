@@ -21,10 +21,14 @@
  *   addToSitemap false. Listing a noindex page asks Google to crawl the page
  *   that tells it not to.
  *
- *   A still photograph, not the hero clip. The page is opened once on mobile
- *   data and a 540 KB video earns nothing. No video also means there is no
- *   prefers-reduced-motion branch to get wrong, which is how a working hero gets
- *   reported broken twice.
+ *   The header carries the same three-clip hero sequence as the main site, but
+ *   from hero-card.mp4 - a 760px, 424 KB encode rather than the 1.4 MB one. The
+ *   band is about 200px tall inside a 520px card, so the full hero file would be
+ *   several times more data than the band can ever show, on a page opened once
+ *   on mobile data.
+ *   There is deliberately NO prefers-reduced-motion branch. The house stance is
+ *   to still the motion, never to remove the content - hiding the clip and
+ *   falling back to a poster is how a working hero gets reported broken twice.
  *
  *   Google's "G" is the official four-path mark, the same one the kit uses. A
  *   traced brand mark is trademark trouble and reads as slop.
@@ -86,7 +90,7 @@ module.exports = function writeReviewPage({ write, G }) {
     'body{background:#0D1411;color:#14231C;font:400 16px/1.55 Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;display:flex;align-items:flex-start;justify-content:center;min-height:100vh}',
     '.card{width:100%;max-width:520px;background:#fff;padding-bottom:4px}',
     '.hd{position:relative;padding:34px 24px 26px;text-align:center;background:#0D1411;overflow:hidden}',
-    '.hd-bg{position:absolute;inset:0;background-image:url("' + asset('v2-4.jpg') + '");background-size:cover;background-position:center;opacity:.34}',
+    '.hd-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.46}',
     '.hd-sc{position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,10,8,.60),rgba(6,10,8,.88))}',
     '.hd-in{position:relative}',
     '.logo{width:210px;height:86px;margin:0 auto 14px;background:url("' + asset('logo.png') + '") center/contain no-repeat;display:block}',
@@ -148,7 +152,14 @@ module.exports = function writeReviewPage({ write, G }) {
     '<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">\n' +
     '<style>\n' + CSS + '\n</style>\n</head>\n<body>\n' +
     '<main class="card">\n' +
-    '  <div class="hd">\n    <div class="hd-bg"></div><div class="hd-sc"></div>\n    <div class="hd-in">\n' +
+    '  <div class="hd">\n' +
+    /* The same three-clip sequence as the main site, from the small encode.
+       autoplay + muted + playsinline and no controls. Deliberately NO
+       prefers-reduced-motion branch: the house stance is to still the motion,
+       never to remove the content. */
+    '    <video class="hd-bg" autoplay muted loop playsinline preload="auto" poster="' + asset('hero_poster.jpg') + '" aria-hidden="true">' +
+    '<source src="' + asset('hero-card.mp4') + '" type="video/mp4"></video>\n' +
+    '    <div class="hd-sc"></div>\n    <div class="hd-in">\n' +
     '      <span class="logo" role="img" aria-label="' + esc(T.BUSINESS) + '"></span>\n' +
     '      <p>Roofing in ' + esc(T.TOWN) + ' and across ' + esc(T.COUNTY) + '</p>\n    </div>\n  </div>\n\n' +
     '  <div class="body">\n' +

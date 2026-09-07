@@ -24,7 +24,7 @@ html{-webkit-text-size-adjust:100%}
 body{background:#0D1411;color:#14231C;font:400 16px/1.55 Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;display:flex;align-items:flex-start;justify-content:center;min-height:100vh}
 .card{width:100%;max-width:520px;background:#fff;padding-bottom:4px}
 .hd{position:relative;padding:34px 24px 26px;text-align:center;background:#0D1411;overflow:hidden}
-.hd-bg{position:absolute;inset:0;background-image:url("/assets/v2-4.jpg");background-size:cover;background-position:center;opacity:.34}
+.hd-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.46}
 .hd-sc{position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,10,8,.60),rgba(6,10,8,.88))}
 .hd-in{position:relative}
 .logo{width:210px;height:86px;margin:0 auto 14px;background:url("/assets/logo.png") center/contain no-repeat;display:block}
@@ -58,7 +58,8 @@ h1{font:800 30px/1.15 "Plus Jakarta Sans",Inter,sans-serif;color:#14231C;margin-
 <body>
 <main class="card">
   <div class="hd">
-    <div class="hd-bg"></div><div class="hd-sc"></div>
+    <video class="hd-bg" autoplay muted loop playsinline preload="auto" poster="/assets/hero_poster.jpg" aria-hidden="true"><source src="/assets/hero-card.mp4" type="video/mp4"></video>
+    <div class="hd-sc"></div>
     <div class="hd-in">
       <span class="logo" role="img" aria-label="Midland Roof Shield"></span>
       <p>Roofing in Cannock and across Staffordshire</p>
