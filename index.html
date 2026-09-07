@@ -216,7 +216,7 @@ h2.title{font-size:clamp(28px,5.2vw,46px);color:var(--fg)}
    ========================================================= */
 .nav{position:fixed;inset:0 0 auto 0;z-index:120;transition:.3s ease;color:var(--on-ink)}
 .nav-in{
-  display:flex;align-items:center;gap:16px;height:74px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;height:74px;
   width:100%;max-width:var(--wrap);margin-inline:auto;padding-inline:var(--pad);
 }
 .nav::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(var(--ink-rgb),.86),rgba(var(--ink-rgb),0));transition:.3s}
@@ -244,9 +244,10 @@ h2.title{font-size:clamp(28px,5.2vw,46px);color:var(--fg)}
 .drawer{
   position:fixed;inset:0;z-index:130;background:rgba(var(--ink-deep-rgb),.97);backdrop-filter:blur(10px);
   display:flex;flex-direction:column;padding:22px var(--pad) 30px;color:var(--on-ink);
-  transform:translateY(-102%);transition:transform .38s cubic-bezier(.4,0,.2,1);
+  transform:translateY(-102%);visibility:hidden;
+  transition:transform .38s cubic-bezier(.4,0,.2,1),visibility 0s .38s;
 }
-.drawer.open{transform:translateY(0)}
+.drawer.open{transform:translateY(0);visibility:visible;transition-delay:0s}
 .drawer-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:26px}
 .drawer nav{display:flex;flex-direction:column;gap:2px}
 .drawer nav a{
