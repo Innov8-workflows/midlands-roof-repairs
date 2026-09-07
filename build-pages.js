@@ -7,7 +7,7 @@
 const fs = require('fs');
 const path = require('path');
 const G = require('./generate.js');
-const { shell, crumbTrail, ctaBand, faqBlock, svg, esc, tok, asset, varName, B, ORIGIN, T,
+const { shell, crumbTrail, ctaBand, waHref, faqBlock, svg, esc, tok, asset, varName, B, ORIGIN, T,
         cfg, SERVICES, AREAS, SITE, OUT, ROOT, SRC, ASSETS, buildCss,
         bizNode, webPage, faqSchema, BIZ_ID, STAGING } = G;
 
@@ -167,12 +167,12 @@ const svcCard = s => `<a class="linkcard" href="${B}services/${s.slug}/">
 const areaCard = a => `<a class="linkcard" href="${B}${a.slug}/">
   <span>${esc(a.name)}<small>${a.miles === 0 ? 'Our yard is here' : a.miles + ' miles from the yard'}</small></span>${svg('arrow')}</a>`;
 
-const sideCard = () => `<div class="side">
+const sideCard = (where) => `<div class="side">
   <div class="side-card">
     <h2>Get a free quote</h2>
     <p>Someone comes out, looks at the roof properly and gives you a fixed written price. No charge, no obligation.</p>
     <a class="btn btn-primary" href="tel:${T.PHONE_TEL}" data-track="call">${svg('phone')}Call ${T.PHONE}</a>
-    <a class="btn btn-ghost" href="https://wa.me/${T.PHONE_WA}" target="_blank" rel="noopener">WhatsApp us</a>
+    <a class="btn btn-ghost" href="${waHref(where)}" target="_blank" rel="noopener">WhatsApp us</a>
     <div class="factrow">${svg('clock')}<span>${esc(SITE.contact.hours)}</span></div>
     <div class="factrow">${svg('pin')}<span>${esc(SITE.contact.addressOneLine)}</span></div>
     <div class="factrow">${svg('shield')}<span>Public liability insured, 10 year workmanship guarantee</span></div>
@@ -275,7 +275,7 @@ for (const s of SERVICES) {
 
     ${galleryFigs(s.gallery)}
 
-    ${ctaBand('Want someone to take a look?', 'Free quote, fixed written price, and we answer the phone 24 hours a day.')}
+    ${ctaBand('Want someone to take a look?', 'Free quote, fixed written price, and we answer the phone 24 hours a day.', 'for ' + s.name.toLowerCase())}
 
     <h2>${esc(s.name)} near you</h2>
     <p>We cover around twenty miles from our yard in Hednesford. Pick your town for what the work tends to look like there.</p>
@@ -288,7 +288,7 @@ for (const s of SERVICES) {
     <h2>Other services</h2>
     <div class="linkgrid">${others.map(svcCard).join('')}</div>
   </div>
-  ${sideCard()}
+  ${sideCard('for ' + s.name.toLowerCase())}
 </div></div></section>`,
   }));
 }
@@ -368,7 +368,7 @@ for (const a of AREAS) {
     <h2>What we do in ${esc(a.name)}</h2>
     <div class="linkgrid">${SERVICES.map(svcCard).join('')}</div>
 
-    ${ctaBand('Need a roofer in ' + a.name + '?', 'Free quote, fixed written price, and a 24 hour phone line.')}
+    ${ctaBand('Need a roofer in ' + a.name + '?', 'Free quote, fixed written price, and a 24 hour phone line.', 'in ' + a.name)}
 
     <h2>Areas we cover around ${esc(a.name)}</h2>
     <p>As well as ${esc(a.name)} itself we cover ${a.nearby.map(n => esc(n)).join(', ')} and the surrounding villages.</p>
@@ -378,7 +378,7 @@ for (const a of AREAS) {
     <h2>Frequently asked questions</h2>
     ${faqBlock(faqs)}
   </div>
-  ${sideCard()}
+  ${sideCard('in ' + a.name)}
 </div></div></section>`,
   }));
 }
@@ -536,7 +536,7 @@ for (const a of AREAS) {
     <h2>How to reach us</h2>
     <div class="linkgrid" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr))">
       <a class="linkcard" href="tel:${T.PHONE_TEL}" data-track="call"><span>Call or text<small>${T.PHONE}</small></span>${svg('phone')}</a>
-      <a class="linkcard" href="https://wa.me/${T.PHONE_WA}" target="_blank" rel="noopener" data-track="whatsapp"><span>WhatsApp<small>${T.PHONE}</small></span>${svg('send')}</a>
+      <a class="linkcard" href="${waHref()}" target="_blank" rel="noopener" data-track="whatsapp"><span>WhatsApp<small>${T.PHONE}</small></span>${svg('send')}</a>
       <a class="linkcard" href="mailto:${T.EMAIL}"><span>Email<small>${T.EMAIL}</small></span>${svg('mail')}</a>
     </div>
 

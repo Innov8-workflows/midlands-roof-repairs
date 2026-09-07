@@ -344,4 +344,34 @@ const review = {
   fallbackPutRight: 'If something is not right we would much rather hear it from you first and put it straight. Ring {{OWNER}} on {{PHONE}} and we will come back out.',
 };
 
-module.exports = { contact, reviews, sharedAreaFaqs, generalFaqs, gallery, galleryV2, galleryAll, v2By, about, supplies, reviewLinks, review };
+/* ------------------------------------------------- WhatsApp prefill text --
+ * Kevin takes most of his enquiries on WhatsApp, and a bare wa.me link opens
+ * an empty thread - he gets a message from an unknown number with no idea
+ * whether it came off the website, a van, a Bark lead or a neighbour.
+ *
+ * Every WhatsApp link on the site therefore opens with a line that says so.
+ * It is written in the CUSTOMER'S voice, not as a system tag, because the
+ * customer is the one who presses send and a line reading "SOURCE: WEB" would
+ * be both odd to send and easy to delete.
+ *
+ * `where` is optional page context: the service they were reading, or the town
+ * page they were on. Callers that have neither pass nothing and get the plain
+ * line, which still names the website.
+ *
+ * Prefill is a suggestion, not a guarantee - WhatsApp puts the text in the
+ * compose box and the customer can clear it before sending. Most do not. Do
+ * not build anything that DEPENDS on the line being present. */
+const whatsapp = {
+  opener: (where) =>
+    'Hi ' + '{{BUSINESS}}' + ', I found you on your website and I would like a quote' +
+    (where ? ' ' + where : '') + '.',
+
+  /* The quote form already sends name, phone, area and service, so it needs a
+     source line rather than context - it says which form, not just which site. */
+  formOpener: 'Hi {{BUSINESS}}, I found you on your website and I would like a quote.',
+  /* Host written out rather than tokenised - there is no {{ORIGIN}} token, and
+     site.config.js origin is a full URL. If the domain ever changes, this and
+     site.config.js origin both need it. */
+  formSource: 'Sent from the quote form on midlandroofshield.co.uk',
+};
+module.exports = { whatsapp, contact, reviews, sharedAreaFaqs, generalFaqs, gallery, galleryV2, galleryAll, v2By, about, supplies, reviewLinks, review };
