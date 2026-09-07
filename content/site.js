@@ -246,6 +246,20 @@ const review = {
   putRight: 'If something is not right we would much rather hear it from you first and put it straight. Ring {{OWNER}} on {{PHONE}} or send a message on WhatsApp, and we will come back out.',
   /* Only claims declared in site.config.js claims{}. */
   reassure: 'Public liability insured. Ten year workmanship guarantee.',
+
+  /* ---- used ONLY while reviewLinks.google is empty ----
+     Kevin has no Google Business Profile yet, so there is nowhere for a customer
+     to leave a Google review. Rather than ship a button that goes nowhere, or a
+     404, the page goes live with the ask routed to WhatsApp so feedback can
+     still be collected from day one.
+     The MOMENT a Google link is added, the page switches to the Google version
+     automatically and none of this is used. */
+  fallbackButton: 'Tell us how we did',
+  fallbackNote: 'Opens WhatsApp, about thirty seconds',
+  fallbackAsk: 'We are a family business and we do not advertise much. Almost everyone who rings us found us through somebody else, so hearing how we did genuinely helps, good or bad.',
+  /* the WhatsApp button is removed from this section in fallback mode, because
+     WhatsApp is already the primary button, so the copy must not offer it here */
+  fallbackPutRight: 'If something is not right we would much rather hear it from you first and put it straight. Ring {{OWNER}} on {{PHONE}} and we will come back out.',
 };
 
 module.exports = { contact, reviews, sharedAreaFaqs, generalFaqs, gallery, galleryV2, galleryAll, v2By, about, supplies, reviewLinks, review };

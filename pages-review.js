@@ -31,7 +31,11 @@
  *
  *   The reassurance line carries only claims declared in site.config.js claims{}.
  *
- * GATED: writes nothing while reviewLinks.google is empty.
+ * WHEN THERE IS NO GOOGLE LINK the primary button routes to WhatsApp instead
+ * and the Google-specific steps are omitted, so the page still works and still
+ * collects feedback. It switches to the Google version automatically the moment
+ * reviewLinks.google is filled in. A dead button would be worse than the 404
+ * this page used to serve.
  */
 'use strict';
 
@@ -39,11 +43,8 @@ module.exports = function writeReviewPage({ write, G }) {
   const { esc, tok, asset, svg, B, ORIGIN, T, cfg, SITE, WA_PATH } = G;
   const L = SITE.reviewLinks;
 
-  if (!L.google) {
-    console.log('  review page SKIPPED — content/site.js reviewLinks.google is empty');
-    return;
-  }
   const R = SITE.review;
+
 
   const G_MARK =
     '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">' +
@@ -58,6 +59,25 @@ module.exports = function writeReviewPage({ write, G }) {
 
   /* WhatsApp's own mark, fill="currentColor" so `color` drives it, not `fill` */
   const WA = '<svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor" aria-hidden="true">' + WA_PATH + '</svg>';
+  /* white, for use on the green primary button */
+  const WA_WHITE = '<svg viewBox="0 0 24 24" width="22" height="22" fill="#fff" aria-hidden="true">' + WA_PATH + '</svg>';
+
+  /* ---------------------------------------------------------- the primary ask
+   * Kevin has no Google Business Profile yet, so there is nowhere for a customer
+   * to leave a Google review. Three options, and only one of them is any good:
+   *   404          - what the page did before. Useless to him.
+   *   dead button  - worse than the 404. A customer taps, nothing happens, and
+   *                  they do not come back. That costs the review outright.
+   *   route to WhatsApp - the page goes live, works, and collects feedback from
+   *                  day one. This one.
+   * The moment a real link is put in reviewLinks.google the page switches to the
+   * Google version on the next build, and none of the fallback is used. */
+  const hasGoogle = !!L.google;
+  const primary = hasGoogle
+    ? { href: L.google, label: R.button, note: R.buttonNote, ask: R.ask, mark: G_MARK, ext: true }
+    : { href: 'https://wa.me/' + T.PHONE_WA, label: R.fallbackButton, note: R.fallbackNote,
+        ask: R.fallbackAsk, mark: WA_WHITE, ext: true };
+
 
   /* About 3 KB of CSS. The site stylesheet is far larger and none of it applies. */
   const CSS = [
@@ -138,18 +158,27 @@ module.exports = function writeReviewPage({ write, G }) {
     '    <p class="thanks">' + esc(tok(R.thanks)) + '</p>\n  </div>\n\n' +
     '  <div class="ask">\n' +
     '    <h2>' + esc(tok(R.askTitle)) + '</h2>\n' +
-    '    <p>' + esc(tok(R.ask)) + '</p>\n' +
-    '    <a class="btn" href="' + esc(L.google) + '" target="_blank" rel="noopener">' + G_MARK + esc(R.button) + '</a>\n' +
-    '    <span class="btn-note">' + esc(R.buttonNote) + '</span>\n  </div>\n\n' +
-    '  <div class="steps">\n    <h2>How it works</h2>\n' +
-    R.steps.map(s => '    <div class="step">' + esc(tok(s)) + '</div>').join('\n') + '\n  </div>\n' +
+    '    <p>' + esc(tok(primary.ask)) + '</p>\n' +
+    '    <a class="btn" href="' + esc(primary.href) + '" target="_blank" rel="noopener">' + primary.mark + esc(primary.label) + '</a>\n' +
+    '    <span class="btn-note">' + esc(primary.note) + '</span>\n  </div>\n\n' +
+    /* The steps are about signing in to Google, so they only make sense in the
+       Google version. In the WhatsApp fallback they are omitted entirely rather
+       than reworded into filler. */
+    (hasGoogle
+      ? '  <div class="steps">\n    <h2>How it works</h2>\n' +
+        R.steps.map(x => '    <div class="step">' + esc(tok(x)) + '</div>').join('\n') + '\n  </div>\n'
+      : '') +
     secondary + '\n\n' +
     '  <div class="put">\n' +
     '    <h2>' + esc(tok(R.putRightTitle)) + '</h2>\n' +
-    '    <p>' + esc(tok(R.putRight)) + '</p>\n' +
+    '    <p>' + esc(tok(hasGoogle ? R.putRight : R.fallbackPutRight)) + '</p>\n' +
     '    <div class="put-btns">\n' +
     '      <a class="pbtn" href="tel:' + T.PHONE_TEL + '">' + svg('phone') + 'Call ' + esc(T.OWNER) + '</a>\n' +
-    '      <a class="pbtn" href="https://wa.me/' + T.PHONE_WA + '" target="_blank" rel="noopener">' + WA + 'WhatsApp</a>\n' +
+    /* In the WhatsApp fallback the primary button is already WhatsApp, so
+       repeating it here would put the same destination on the card twice. */
+    (hasGoogle
+      ? '      <a class="pbtn" href="https://wa.me/' + T.PHONE_WA + '" target="_blank" rel="noopener">' + WA + 'WhatsApp</a>\n'
+      : '') +
     '    </div>\n  </div>\n\n' +
     '  <div class="ft">\n' +
     '    <span class="reassure">' + esc(R.reassure) + '</span>\n' +
