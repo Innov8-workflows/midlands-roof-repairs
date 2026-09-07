@@ -9,9 +9,13 @@
  *                     Kevin's phrasing. Worth replacing with his own words when
  *                     he has five minutes.
  *
- * Kevin listed five services. The demo homepage advertises flat roofing and
- * chimneys/leadwork as well, and the gallery plainly shows him doing both, but
- * he did not list them - so they get no page. Flagged in BUILD-REPORT.md.
+ * Kevin listed FIVE services on the form. Two more have been added since, both
+ * on Jay's explicit instruction and both advertised on the demo homepage from
+ * the start, with gallery photographs plainly showing the work:
+ *   flat-roofing           added 2026-09-06
+ *   chimneys-and-leadwork  added 2026-09-07
+ * Neither came from the submission. If the service list is ever reconciled with
+ * Kevin, these two are the ones to confirm first.
  */
 'use strict';
 
@@ -234,5 +238,49 @@ module.exports = [
     /* batch 2 gave this page its own subject matter - it was borrowing generic
        roof photographs before because batch 1 had no conservatory work in it */
     gallery: ['v2-2', 'v2-13', 'v2-8', 'v2-17', 'v2-4', 'v2-14'],
+  },
+  {
+    slug: 'chimneys-and-leadwork',
+    name: 'Chimneys and leadwork',
+    h1: 'Chimney and lead work in {{TOWN}} and across {{COUNTY}}',
+    title: 'Chimney Repairs and Leadwork in {{TOWN}} | {{BUSINESS}}',
+    desc: 'Chimney flashing, lead valleys, lead trays and abutment detailing across {{TOWN}}, Hednesford, Rugeley and 20 miles around. 24 hour call out. Call {{PHONE}}.',
+    lede: 'Most roofs that leak are not leaking through the tiles. They are leaking where the roof meets something else.',
+    inShort: 'We renew chimney flashing, form lead valleys and trays, and dress lead into abutments and parapets across {{TOWN}} and the towns around it. Lead is where a roof usually fails first, because it is the part that has to move with the building and the part most often patched with mortar or sealant by somebody in a hurry. We answer the phone 24 hours a day, and we will tell you honestly whether it is the lead that has failed or the stack itself.',
+    signsTitle: 'Signs it is the lead that has gone',
+    signs: [
+      'A damp patch on a chimney breast, often on the landing or in a back bedroom, that returns after every spell of driving rain',
+      'A cracked or missing mortar fillet where the roof meets the stack, which is doing a job lead should have been doing',
+      'Silicone or roofing tar smeared along a flashing line, which is a patch rather than a repair',
+      'Lead that has split along a fold, or lifted away from the brickwork at its top edge',
+      'A stain or a line of moss running straight down one valley, where water is tracking under the lead instead of over it',
+      'A leak that only shows up when the rain comes from one particular direction',
+    ],
+    processTitle: 'How lead work actually goes',
+    steps: [
+      ['We find where the water is really getting in',
+       'Water tracks before it shows. A stain on a chimney breast can come from a flashing several feet away, from the stack soaking through, or from a valley higher up the roof. Someone comes out and works out which one it is before anything gets quoted.'],
+      ['You get told whether it is the lead or the stack',
+       'If the lead has failed, we renew it. If the brickwork and the haunching on top of the stack are what is letting water in, new flashing will not fix that, and we would rather tell you so than sell you the job we came to do.'],
+      ['It gets cut and dressed in, not stuck on',
+       'Flashing is stepped into the mortar courses and wedged, soakers go under the tiles, and valleys and trays are formed in place so the water runs where it is meant to. Mortar fillets and sealant are what we take off, not what we put on.'],
+      ['We leave it clean',
+       'The old lead and the spoil go with us, the site is sheeted while we work, and the drive is swept before we leave.'],
+    ],
+    faqs: [
+      ['Why does my chimney leak when the roof itself is fine?',
+       'Because the roof and the chimney are two different structures that move at slightly different rates, and the joint between them has to cope with that. Lead can, because it flexes. A mortar fillet cannot, so it cracks, and once it has cracked the water goes straight down the outside of the stack and into the ceiling below.'],
+      ['Can you not just seal it up?',
+       'You can, and it will stop the leak for a season or two. Sealant and roofing tar are rigid, so they crack in the same place the mortar did, and they make the proper repair more awkward because they have to come off first. If you want it done once, it wants lead.'],
+      ['How long should lead last?',
+       'Lead dressed and fixed properly will normally outlast the covering around it, which is why you often see sound old lead on a roof that has been retiled twice. Most of the failed lead we take off failed because it was too long a piece, fixed too rigidly, or never wedged into the brickwork in the first place. Our workmanship carries a ten year guarantee.'],
+      ['Will you need scaffolding?',
+       'For anything on a stack, almost certainly, because it is work that takes two hands and cannot be done safely off a ladder. We will tell you when we quote, so it is in the fixed written price rather than added afterwards.'],
+      ['Another roofer has already been out and it still leaks. Will you look?',
+       'Yes, and it is a fair part of what we get called to. Ring us on {{PHONE}}, and it helps if you can say when it leaks and which way the rain is coming from, because that usually narrows down where to start looking.'],
+    ],
+    /* All chimney and lead jobs from batch one. g11/g17/g4 are the clearest
+       leadwork shots on the site. */
+    gallery: ['g11', 'g17', 'g4', 'g3', 'g10', 'g12'],
   },
 ];

@@ -278,30 +278,31 @@ const supplies = {
  * `secondary` is empty on purpose. There is still no Facebook page URL and no
  * Checkatrade or MyBuilder profile has ever been mentioned. Google-only is a
  * legitimate shape, and Google is the only one that moves the local ranking. */
-/* READ vs WRITE. These are different links and mixing them up is the single
- * most common way a review funnel quietly fails:
+/* READ vs WRITE. Different links, and mixing them up is the commonest way a
+ * review funnel quietly fails:
  *   googleRead  - the listing, where a visitor READS reviews. Homepage badge.
- *   googleWrite - the Ask-for-reviews link, which opens the WRITE dialog. This
- *                 is what /review/ needs, and ONLY Kevin can produce it:
- *                 Business Profile -> Ask for reviews -> copy link. It looks
- *                 like https://g.page/r/XXXXXXXX/review
+ *   googleWrite - the Ask-for-reviews link, which opens the WRITE dialog
+ *                 directly. This is what /review/ sends customers to.
  *
- * googleWrite IS STILL EMPTY, so pages-review.js keeps routing the ask to
- * WhatsApp. Jay's 2026-09-07 link was a google.com/search URL carrying his own
- * session (authuser=3, and a mat= state blob), which is not a review link and
- * would not have worked for a customer. The session parameters are stripped
- * from googleRead below.
+ * BOTH VERIFIED 2026-09-07 by following the redirects:
+ *   googleWrite  302 -> 302 -> 200 at
+ *     maps/place//data=!4m3!3m2!1s0x487a0bd8fb1b6647:0xf1686f1565ea8289!12e1
+ *     ?source=g.page.m.kd._&laa=lu-desktop-review-solicitation
+ *   `!12e1` is the write-a-review dialog and `laa=...review-solicitation` is
+ *   the attribution Google puts on the Ask-for-reviews button, so this is the
+ *   real thing and not the profile URL.
  *
- * googleRead could NOT be verified end to end - Google 302s to consent.google
- * for an automated fetch and 429s a headless browser. The 302 proves the URL is
- * accepted, not that it lands on the right panel. A Maps share link would be
- * sturdier than a stick= parameter; ask Kevin for one.
+ * googleRead is DERIVED, not supplied. The second half of that place pair,
+ * 0xf1686f1565ea8289, is the listing CID; in decimal it is the number below.
+ * A cid= URL is stable in a way the google.com/search?stick= link Jay first
+ * sent was not - that one carried his own session (authuser=3, a mat= blob)
+ * and would not have worked for a customer.
  *
  * `secondary` stays empty: still no Facebook page URL, no Checkatrade, no
  * MyBuilder. */
 const reviewLinks = {
-  googleRead:  'https://www.google.com/search?q=Midland+roof+shield&stick=H4sIAAAAAAAA_-NgU1I1qDCxME80SEqxSEsyTDIzMzG3MqhIMzSzMEszNDUzTU20MLKwXMQq7JuZkpOYl6JQlJ-fplCckZmakwIAj07dxD8AAAA&hl=en',
-  googleWrite: '',
+  googleRead:  'https://www.google.com/maps?cid=17395275698413404809',
+  googleWrite: 'https://g.page/r/CYmC6mUVb2jxEAI/review',
   bark: 'https://www.bark.com/en/gb/b/everest-roofing-staffs-ltd/Yn9qL/',
   yell: 'https://www.yell.com/biz/midland-roofs-bewdley-9176728/',
   secondary: [],   // e.g. { name: 'Facebook', url: 'https://...' }

@@ -80,11 +80,17 @@ module.exports = {
   claims: {
     insured: {
       value: 'Public liability insurance',
-      amount: '100000',
-      evidence: 'Jay attested 2026-09-06. No certificate attached to submission #17.',
-      /* NOTE: 100000 is what Kevin typed. Trade public liability is normally
-         1m-5m and many customers ask for 1m minimum. Flagged in BUILD-REPORT.md
-         and worth checking against the certificate before go-live. */
+      amount: '1000000',
+      evidence: 'Jay attested 2026-09-06, amount corrected by Jay 2026-09-07. No certificate attached to submission #17.',
+      /* Submission #17 said 100000, which looked like a missing zero - trade
+         public liability is normally 1m-5m and many customers ask for 1m as a
+         minimum. Jay confirmed 2026-09-07 that it is one million.
+
+         STILL NOT PRINTED ANYWHERE. The pages say "public liability insured"
+         and never name a figure, which is why the wrong number did no harm.
+         Naming a sum is a bigger claim than declaring cover, so it stays
+         unprinted until Jay asks for it. Grep _site for the figure before
+         assuming otherwise. */
     },
     years_trading: {
       value: '25',
