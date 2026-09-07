@@ -25,6 +25,11 @@
     radial-gradient(72% 100% at 10% 50%,rgba(var(--brand-rgb),.30),transparent 62%),
     radial-gradient(72% 100% at 92% 42%,rgba(var(--brand2-rgb),.24),transparent 60%),
     linear-gradient(135deg,rgba(var(--ink-deep-rgb),.93) 0%,rgba(var(--ink-rgb),.88) 52%,rgba(var(--ink-deep-rgb),.94) 100%)}
+
+  /* Only one review card is on screen at a time below 680px, so stretching
+     every card to the height of the tallest in the set (the flex default)
+     just leaves a block of dead white under the short ones. */
+  @media (max-width:680px){ .rev-track{align-items:flex-start} }
 </style>
 
 <!-- ================= NAV ================= -->
@@ -41,6 +46,7 @@
       <a href="{{BASE}}services/">Services</a>
       <a href="#transformations">Our Jobs</a>
       <a href="{{BASE}}our-work/">Our Work</a>
+      <a href="#reviews">Reviews</a>
       <a href="{{BASE}}about/">About</a>
       <a href="{{BASE}}areas-we-cover/">Areas</a>
       <a href="{{BASE}}faqs/">FAQs</a>
@@ -73,6 +79,7 @@
     <a href="{{BASE}}services/">Services <svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
     <a href="#transformations">Our Jobs <svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
     <a href="{{BASE}}our-work/">Our Work <svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    <a href="#reviews">Reviews <svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
     <a href="{{BASE}}about/">About <svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
     <a href="{{BASE}}areas-we-cover/">Areas <svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
     <a href="{{BASE}}faqs/">FAQs <svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
@@ -319,6 +326,63 @@
         <h3>Clean site, swept drive</h3>
         <p>Sheeted down, waste taken away as we go, and the drive swept before we leave.</p>
       </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= REVIEWS ================= -->
+<section class="sec rev s-tint" id="reviews">
+  <div class="wrap">
+    <div class="rev-head rv">
+      <div>
+        <span class="eyebrow">Reviews</span>
+        <h2 class="title">What our customers say</h2>
+        <p class="lede" style="margin-top:10px">These are customers&rsquo; own words, copied from Bark exactly as they were written. Every badge below opens the platform it came from, so you can read the rest for yourself.</p>
+      </div>
+      <div class="rev-score">
+        <div>
+          <b>5</b>
+          <small>out of 5 on Bark</small>
+        </div>
+        <div>
+          <div class="stars" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg></div>
+          <div style="font-size:12.5px;color:var(--paper-muted);margin-top:4px">83 reviews across Google, Bark and Yell</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rev-view rv" id="revView">
+      <div class="rev-track" id="revTrack"></div>
+    </div>
+    <div class="rev-ctl">
+      <button class="rev-arrow" id="revPrev" aria-label="Previous reviews">
+        <svg class="icon" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <div class="rev-pages" id="revPages"></div>
+      <button class="rev-arrow" id="revNext" aria-label="Next reviews">
+        <svg class="icon" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+    </div>
+
+    <div class="rev-plat rv">
+      <p class="rev-plat-lede">Reviewed on three platforms. Every one of these opens the real listing.</p>
+      <div class="plat-row">
+        <a class="plat plat-google" href="https://www.google.com/search?q=Midland+roof+shield&stick=H4sIAAAAAAAA_-NgU1I1qDCxME80SEqxSEsyTDIzMzG3MqhIMzSzMEszNDUzTU20MLKwXMQq7JuZkpOYl6JQlJ-fplCckZmakwIAj07dxD8AAAA&hl=en" target="_blank" rel="noopener" style="box-shadow:inset 3px 0 0 #4285F4,var(--sh)" aria-label="Read our Google reviews, opens in a new tab">
+          <span class="plat-logo"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg></span>
+          <span class="plat-txt"><b>Google</b><span>6 reviews</span></span>
+          <svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+        </a>
+        <a class="plat plat-bark" href="https://www.bark.com/en/gb/b/everest-roofing-staffs-ltd/Yn9qL/" target="_blank" rel="noopener" style="box-shadow:inset 3px 0 0 var(--brand),var(--sh)" aria-label="Read our Bark reviews, opens in a new tab">
+          <span class="plat-logo"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="color:var(--brand)"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/><circle cx="12" cy="8" r="6"/></svg></span>
+          <span class="plat-txt"><b>Bark</b><span>51 reviews, rated 5 out of 5</span></span>
+          <svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+        </a>
+        <a class="plat plat-yell" href="https://www.yell.com/biz/midland-roofs-bewdley-9176728/" target="_blank" rel="noopener" style="box-shadow:inset 3px 0 0 var(--brand),var(--sh)" aria-label="Read our Yell reviews, opens in a new tab">
+          <span class="plat-logo"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="color:var(--brand)"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg></span>
+          <span class="plat-txt"><b>Yell</b><span>26 reviews</span></span>
+          <svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -692,6 +756,83 @@
     if (e.key === "Escape" && work.classList.contains("open")) closeWork();
   });
 
+  /* ---------- reviews carousel ---------- */
+  var REVIEWS = [
+    {n:"Roger Stephens", t:"Kevin & his team worked extremely well to get my roof water tight in bad weather conditions, then came back the next day to finish off giving me peace of mind, thank full i found them", w:"Verified on Bark", d:"13 October 2024"},
+    {n:"Brad Page", t:"Kevin gave us a detailed quote and although not the cheapest, he asked for no money up front, assured us that he only uses the best materials and that he would get the job done in the timeframes that he promised. Throughout the process, Kevin stuck to his word, the lads he sent were all very pleasant and hard working, all work was completed to a high standard in the timeframes he promised.", w:"Verified on Bark", d:"26 January 2025"},
+    {n:"Trevor Mountford", t:"Very professional, efficient and able. I throughly recommend them and would not hesitate to use them again", w:"Verified on Bark", d:"10 October 2022"},
+    {n:"Michael Gregson", t:"Kevin was the consummate professional ready to give advice to improve the service he provides. All work carried out to an excellent standard. Thank you Kevin.", w:"Verified on Bark", d:"14 June 2021"},
+    {n:"Selwyn Eglash", t:"Midland Roofs fully replaced my roof. Kevin and his team were at all times professional, efficient, and completed a quality job to our satisfaction. Fully recommended.", w:"Verified on Bark", d:"15 January 2021"},
+    {n:"Amina Bhamjee", t:"OmG these guys are amazing! The whole roof plus porch and entrance roofs needed replacing. Kevin and his team were polite, punctual and super friendly. A true pleasure to work with.", w:"Verified on Bark", d:"17 November 2020"},
+  ];
+  var AV = ["#3FB000","#2E7D0B","#57C21F","#1F5E07","#4CA31A","#265F12"];
+  var STAR = "<svg viewBox=\"0 0 24 24\"><path d=\"M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z\"/></svg>";
+  var track = document.getElementById("revTrack"), pagesBox = document.getElementById("revPages");
+  REVIEWS.forEach(function(r, i){
+    var cell = document.createElement("div");
+    cell.className = "rev-cell";
+    cell.innerHTML =
+      '<article class="rev-card">' +
+        '<div class="rev-top">' +
+          '<div class="rev-av" style="background:' + AV[i % AV.length] + '">' + r.n.charAt(0) + '</div>' +
+          '<div class="rev-who"><b>' + r.n + '</b><span>' + r.w + '</span></div>' +
+        '</div>' +
+        '<div class="stars" aria-label="5 out of 5">' + STAR + STAR + STAR + STAR + STAR + '</div>' +
+        '<p>' + r.t + '</p>' +
+        '<div class="rev-foot">' + r.d + '</div>' +
+      '</article>';
+    track.appendChild(cell);
+  });
+
+  var perView = function(){ return window.innerWidth <= 680 ? 1 : (window.innerWidth <= 1024 ? 2 : 3); };
+  var rp = 0, revTimer, pv = perView();
+  var pageCount = function(){ return Math.max(1, Math.ceil(REVIEWS.length / pv)); };
+  var buildPages = function(){
+    pagesBox.innerHTML = "";
+    for (var i = 0; i < pageCount(); i++){
+      (function(i){
+        var b = document.createElement("button");
+        b.type = "button";
+        b.setAttribute("aria-label", "Reviews page " + (i+1));
+        b.addEventListener("click", function(){ goRev(i); resetRev(); });
+        pagesBox.appendChild(b);
+      })(i);
+    }
+  };
+  var goRev = function(n){
+    var pc = pageCount();
+    rp = (n + pc) % pc;
+    track.style.transform = "translateX(-" + (rp * 100) + "%)";
+    pagesBox.querySelectorAll("button").forEach(function(b, i){ b.classList.toggle("on", i === rp); });
+  };
+  var resetRev = function(){
+    clearInterval(revTimer);
+    revTimer = setInterval(function(){ goRev(rp + 1); }, 6500);
+  };
+  buildPages(); goRev(0); resetRev();
+  var revView = document.getElementById("revView");
+  revView.addEventListener("mouseenter", function(){ clearInterval(revTimer); });
+  revView.addEventListener("mouseleave", resetRev);
+  document.getElementById("revPrev").addEventListener("click", function(){ goRev(rp - 1); resetRev(); });
+  document.getElementById("revNext").addEventListener("click", function(){ goRev(rp + 1); resetRev(); });
+
+  /* swipe on mobile */
+  var sx = 0, sy = 0, swiping = false;
+  revView.addEventListener("touchstart", function(e){ sx = e.touches[0].clientX; sy = e.touches[0].clientY; swiping = true; }, {passive:true});
+  revView.addEventListener("touchend", function(e){
+    if (!swiping) return;
+    swiping = false;
+    var dx = e.changedTouches[0].clientX - sx;
+    var dy = e.changedTouches[0].clientY - sy;
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)){ goRev(rp + (dx < 0 ? 1 : -1)); resetRev(); }
+  }, {passive:true});
+
+  var lastPv = pv;
+  window.addEventListener("resize", function(){
+    pv = perView();
+    if (pv !== lastPv){ lastPv = pv; buildPages(); goRev(0); resetRev(); }
+  });
+
   /* ---------- contact form to WhatsApp ---------- */
   document.getElementById("quoteForm").addEventListener("submit", function(e){
     e.preventDefault();
@@ -721,8 +862,8 @@
 
   /* ---------- pause timers while the tab is hidden ---------- */
   document.addEventListener("visibilitychange", function(){
-    if (document.hidden){ clearInterval(heroTimer); }
-    else if (typeof restartHero === "function") restartHero();
+    if (document.hidden){ clearInterval(heroTimer); clearInterval(revTimer); }
+    else { if (typeof restartHero === "function") restartHero(); resetRev(); }
   });
 
   /* ---------- reveal on scroll ---------- */

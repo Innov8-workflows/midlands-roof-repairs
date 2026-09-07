@@ -38,7 +38,7 @@
  * WHEN THERE IS NO GOOGLE LINK the primary button routes to WhatsApp instead
  * and the Google-specific steps are omitted, so the page still works and still
  * collects feedback. It switches to the Google version automatically the moment
- * reviewLinks.google is filled in. A dead button would be worse than the 404
+ * reviewLinks.googleWrite is filled in. A dead button would be worse than the 404
  * this page used to serve.
  */
 'use strict';
@@ -74,11 +74,11 @@ module.exports = function writeReviewPage({ write, G }) {
    *                  they do not come back. That costs the review outright.
    *   route to WhatsApp - the page goes live, works, and collects feedback from
    *                  day one. This one.
-   * The moment a real link is put in reviewLinks.google the page switches to the
+   * The moment a real link is put in reviewLinks.googleWrite the page switches to the
    * Google version on the next build, and none of the fallback is used. */
-  const hasGoogle = !!L.google;
+  const hasGoogle = !!L.googleWrite;
   const primary = hasGoogle
-    ? { href: L.google, label: R.button, note: R.buttonNote, ask: R.ask, mark: G_MARK, ext: true }
+    ? { href: L.googleWrite, label: R.button, note: R.buttonNote, ask: R.ask, mark: G_MARK, ext: true }
     : { href: 'https://wa.me/' + T.PHONE_WA, label: R.fallbackButton, note: R.fallbackNote,
         ask: R.fallbackAsk, mark: WA_WHITE, ext: true };
 

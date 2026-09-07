@@ -29,12 +29,70 @@ const contact = {
   hoursNote: 'Kevin gave the hours as "24 hours" on the onboarding form. Worth confirming that means a genuine round the clock call out rather than an answerphone, because the site now says so on every page.',
 };
 
-/* Reviews are DELIBERATELY absent. ratings.google says 5.0 from 50, but `gbp`
-   is empty so there is no profile to link to, and check.js fails a client build
-   on a review badge that points nowhere. Jay decided on 2026-09-06 to leave
-   reviews off entirely until there is a live profile. When there is one, add the
-   URL here and the reviews page and homepage section come back. */
-const reviews = { read: [], collect: [] };
+/* ------------------------------------------------------------- reviews --
+ * Kevin has reviews on three platforms. Jay supplied the links 2026-09-07.
+ *
+ * ALL THREE ARE THE SAME BUSINESS, which is not obvious from the URLs, so it is
+ * written down here rather than rediscovered:
+ *   - Bark  /b/everest-roofing-staffs-ltd/  - the profile itself now reads
+ *     "Midland roof shield" at Hednesford, Cannock WS12 2UZ, i.e. Unit 12.
+ *     VERIFIED 2026-09-07 by reading the profile.
+ *   - Yell  /biz/midland-roofs-bewdley-...  - trades as "Midland Roofs" from a
+ *     Kinlet, Bewdley DY12 3HB address, and carries 07411 859355, Kevin's
+ *     mobile. Corroborated by a thomsonlocal listing with the same number, and
+ *     by Bark reviews that call the firm "Midland Roofs" in their own words.
+ *     The old midland-roofs.co.uk website no longer resolves.
+ *
+ * ==================== THE COUNTS ARE JAY-ATTESTED ======================
+ * Bark 51 at 5/5 is verified - read off the profile. Google 6 and Yell 26 are
+ * Jay's figures (2026-09-07) and could NOT be independently checked: Google
+ * 429s automated requests and Yell is behind a Cloudflare bot wall. Treat them
+ * the same way as claims{} - if a number is questioned, re-verify by hand.
+ *
+ * Bark's own headline is 5/5, but its distribution is 80% five star and 20%
+ * four star, i.e. a true mean of about 4.8. The site quotes Bark's displayed
+ * figure and says which platform it is from, which is defensible. Do not
+ * promote it to a site-wide "5.0 rating".
+ *
+ * NO aggregateRating IS EMITTED, deliberately. Google's structured data
+ * guidelines do not allow a business to mark up reviews collected on
+ * third-party sites as its own aggregate, and doing it risks a manual action.
+ * The badges link out instead, which is the honest and the safe shape. */
+const reviews = {
+  /* Verbatim from Bark. Spelling and punctuation are the customers' own and are
+     deliberately NOT tidied up - corrected prose reads written-by-the-agency.
+     `excerpt: true` marks a contiguous cut from a longer review, never a
+     stitched-together one. */
+  featured: [
+    { name: 'Roger Stephens', date: '13 October 2024', platform: 'Bark',
+      text: 'Kevin & his team worked extremely well to get my roof water tight in bad weather conditions, then came back the next day to finish off giving me peace of mind, thank full i found them' },
+
+    { name: 'Brad Page', date: '26 January 2025', platform: 'Bark', excerpt: true,
+      text: 'Kevin gave us a detailed quote and although not the cheapest, he asked for no money up front, assured us that he only uses the best materials and that he would get the job done in the timeframes that he promised. Throughout the process, Kevin stuck to his word, the lads he sent were all very pleasant and hard working, all work was completed to a high standard in the timeframes he promised.' },
+
+    { name: 'Trevor Mountford', date: '10 October 2022', platform: 'Bark',
+      text: 'Very professional, efficient and able. I throughly recommend them and would not hesitate to use them again' },
+
+    { name: 'Michael Gregson', date: '14 June 2021', platform: 'Bark',
+      text: 'Kevin was the consummate professional ready to give advice to improve the service he provides. All work carried out to an excellent standard. Thank you Kevin.' },
+
+    { name: 'Selwyn Eglash', date: '15 January 2021', platform: 'Bark',
+      text: 'Midland Roofs fully replaced my roof. Kevin and his team were at all times professional, efficient, and completed a quality job to our satisfaction. Fully recommended.' },
+
+    { name: 'Amina Bhamjee', date: '17 November 2020', platform: 'Bark',
+      text: 'OmG these guys are amazing! The whole roof plus porch and entrance roofs needed replacing. Kevin and his team were polite, punctual and super friendly. A true pleasure to work with.' },
+  ],
+
+  /* Counts drive the badge row. `verified` says whether I read the number off
+     the platform myself. */
+  platforms: [
+    { key: 'google', name: 'Google', count: 6,  rating: null, verified: false, blurb: 'Read them on Google' },
+    { key: 'bark',   name: 'Bark',   count: 51, rating: '5',  verified: true,  blurb: 'Rated 5 out of 5' },
+    { key: 'yell',   name: 'Yell',   count: 26, rating: null, verified: false, blurb: 'Read them on Yell' },
+  ],
+
+  read: [], collect: [],
+};
 
 /* The three questions every area page carries, plus the two written for that
    specific town in content/areas.js. */
@@ -220,8 +278,32 @@ const supplies = {
  * `secondary` is empty on purpose. There is still no Facebook page URL and no
  * Checkatrade or MyBuilder profile has ever been mentioned. Google-only is a
  * legitimate shape, and Google is the only one that moves the local ranking. */
+/* READ vs WRITE. These are different links and mixing them up is the single
+ * most common way a review funnel quietly fails:
+ *   googleRead  - the listing, where a visitor READS reviews. Homepage badge.
+ *   googleWrite - the Ask-for-reviews link, which opens the WRITE dialog. This
+ *                 is what /review/ needs, and ONLY Kevin can produce it:
+ *                 Business Profile -> Ask for reviews -> copy link. It looks
+ *                 like https://g.page/r/XXXXXXXX/review
+ *
+ * googleWrite IS STILL EMPTY, so pages-review.js keeps routing the ask to
+ * WhatsApp. Jay's 2026-09-07 link was a google.com/search URL carrying his own
+ * session (authuser=3, and a mat= state blob), which is not a review link and
+ * would not have worked for a customer. The session parameters are stripped
+ * from googleRead below.
+ *
+ * googleRead could NOT be verified end to end - Google 302s to consent.google
+ * for an automated fetch and 429s a headless browser. The 302 proves the URL is
+ * accepted, not that it lands on the right panel. A Maps share link would be
+ * sturdier than a stick= parameter; ask Kevin for one.
+ *
+ * `secondary` stays empty: still no Facebook page URL, no Checkatrade, no
+ * MyBuilder. */
 const reviewLinks = {
-  google: '',
+  googleRead:  'https://www.google.com/search?q=Midland+roof+shield&stick=H4sIAAAAAAAA_-NgU1I1qDCxME80SEqxSEsyTDIzMzG3MqhIMzSzMEszNDUzTU20MLKwXMQq7JuZkpOYl6JQlJ-fplCckZmakwIAj07dxD8AAAA&hl=en',
+  googleWrite: '',
+  bark: 'https://www.bark.com/en/gb/b/everest-roofing-staffs-ltd/Yn9qL/',
+  yell: 'https://www.yell.com/biz/midland-roofs-bewdley-9176728/',
   secondary: [],   // e.g. { name: 'Facebook', url: 'https://...' }
 };
 
