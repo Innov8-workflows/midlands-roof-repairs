@@ -102,6 +102,18 @@ module.exports = {
     },
   },
 
+  /* GA4. Supplied by Jay 2026-09-08.
+   *
+   * Loaded ONLY after an explicit Accept on the cookie banner - see
+   * analytics-src.js. Under UK PECR the tag must not run and ask afterwards.
+   *
+   * Blank this and the whole thing disappears: no gtag, no banner, no cookies.
+   * analytics-src.js returns early on an empty id rather than shipping a
+   * banner asking permission for something that is not happening. */
+  analytics: {
+    ga4: 'G-E33FMGV73W',
+  },
+
   /* Where each fact came from, so provenance survives into the next session. */
   facts: {
     OWNER:   { value: 'Kevin Clee', source: 'submission #17', seen: '2026-09-06' },

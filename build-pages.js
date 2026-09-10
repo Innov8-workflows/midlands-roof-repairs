@@ -59,12 +59,19 @@ const CSP = [
   "object-src 'none'",
   "frame-src 'none'",
   "frame-ancestors 'none'",
-  "script-src 'self' 'unsafe-inline'",
+  /* googletagmanager is gtag.js itself. It is only ever requested after the
+     visitor accepts, but the CSP is a static header and cannot know that, so
+     the origin has to be allowed unconditionally. */
+  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com",
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' https://fonts.gstatic.com",
-  "img-src 'self' data:",
+  /* GA4 falls back to an image beacon when fetch/sendBeacon are unavailable. */
+  "img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com",
   "media-src 'self' data:",
-  "connect-src 'self'",
+  /* Where GA4 actually SENDS the hits. Miss these and the tag loads, the
+     console stays clean enough to miss, and Realtime shows nothing at all. */
+  "connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com " +
+    "https://*.analytics.google.com https://*.googletagmanager.com",
   "form-action 'self'",
   "manifest-src 'none'",
   "worker-src 'none'",
@@ -642,6 +649,21 @@ legalShell('terms', 'Terms and conditions',
  * GATED. Writes nothing while content/site.js reviewLinks.google is empty, so it
  * cannot ship with a dead button. */
 require('./pages-review.js')({ write, G });
+
+/* ------------------------------------------------------------- analytics -- */
+/* analytics-src.js is the source; the built copy is the same file with the GA4
+   id substituted. Written here rather than kept in _src/assets because it is
+   generated, and because the id belongs in site.config.js with everything else
+   about this client. */
+{
+  const GA4 = (cfg.analytics && cfg.analytics.ga4) || '';
+  const src = fs.readFileSync(path.join(__dirname, 'analytics-src.js'), 'utf8');
+  if (src.split('{{GA4_ID}}').length - 1 !== 1) {
+    throw new Error('analytics-src.js must contain exactly one {{GA4_ID}}');
+  }
+  fs.writeFileSync(path.join(OUT, 'assets', 'analytics.js'), src.split('{{GA4_ID}}').join(GA4));
+  console.log('  analytics.js written' + (GA4 ? ' (GA4 ' + GA4 + ', consent gated)' : ' (NO GA4 ID - inert)'));
+}
 
 /* ------------------------------------------------------- sitemap + robots -- */
 const today = new Date().toISOString().slice(0, 10);

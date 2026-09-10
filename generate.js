@@ -335,6 +335,7 @@ ${nav()}
 ${body}
 ${footer()}
 ${PAGE_JS}
+<script src="${asset('analytics.js')}" defer></script>
 </body>
 </html>
 `;
