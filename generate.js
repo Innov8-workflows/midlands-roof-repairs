@@ -312,6 +312,9 @@ function shell({ slug, title, desc, body, schema, ogImage }) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+${cfg.searchConsole && cfg.searchConsole.verification
+  ? '<meta name="google-site-verification" content="' + cfg.searchConsole.verification + '">'
+  : ''}
 <title>${esc(tok(title))}</title>
 <meta name="description" content="${esc(tok(desc))}">
 <meta name="theme-color" content="${cfg.palette.ink}">${NOINDEX}

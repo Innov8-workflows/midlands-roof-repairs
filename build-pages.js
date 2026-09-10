@@ -111,6 +111,14 @@ let home = fs.readFileSync(homeSrc, 'utf8');
    file, which would be lost on the next `node build.js`. */
 home = home.replace('</title>', '</title>\n<link rel="canonical" href="' + ORIGIN + B + '">');
 
+/* Search Console verification. The homepage is the ONLY page Google checks for
+   the HTML-tag method, and the kit template has no slot for it, so it is
+   injected here the same way the canonical is. */
+if (cfg.searchConsole && cfg.searchConsole.verification) {
+  home = home.replace('</title>',
+    '</title>\n<meta name="google-site-verification" content="' + cfg.searchConsole.verification + '">');
+}
+
 /* The demo homepage carried no structured data at all - the kit template emits
    none. That leaves the single most important page on the site as the only one
    without a LocalBusiness node. Injected here, same shape as every other page,

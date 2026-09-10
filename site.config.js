@@ -124,6 +124,15 @@ module.exports = {
    * NOT consent gated - it sets no cookies and stores no identifiers, and a
    * declined banner must never cost a real enquiry. Deliberately a separate
    * file from analytics.js so that difference is structural. */
+  /* Google Search Console, HTML-tag method. Token supplied by Jay 2026-09-10.
+   *
+   * KEEP IT AFTER VERIFYING. Google re-checks periodically and un-verifies the
+   * property if the tag disappears, which silently stops the coverage and query
+   * data without any warning that would reach us. */
+  searchConsole: {
+    verification: 'DuTaFRJtU4K86uH4DtW22Tj9_auXla22T0UihKspLno',
+  },
+
   leadLog: {
     exec: 'https://script.google.com/macros/s/AKfycbzn4JFEaXzzLFegCZYYSj07wRE7dTLExrphLwZPeaBr_duebZhnTObvAfONZ9cU0e2Y/exec',
   },
