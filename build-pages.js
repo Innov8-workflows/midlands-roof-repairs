@@ -114,6 +114,36 @@ home = home.replace('</title>', '</title>\n<link rel="canonical" href="' + ORIGI
 /* Search Console verification. The homepage is the ONLY page Google checks for
    the HTML-tag method, and the kit template has no slot for it, so it is
    injected here the same way the canonical is. */
+/* The kit template emits no og: tags - it was built for a one-page demo that
+   nobody shared. Without these, pasting the homepage into WhatsApp gives a bare
+   grey URL while every OTHER page previews properly, which looks like the
+   homepage is the broken one. Injected here alongside the canonical. */
+{
+  const CARD = ORIGIN + asset('og-home.jpg');
+  /* TOWN not BASE_TOWN. BASE_TOWN is Hednesford, the yard; TOWN is Cannock,
+     which is what the page <title>, the h1 and every area page already say.
+     A share card that names a different town to the page it links to is worse
+     than no card. */
+  const ogTitle = T.BUSINESS + ' | Roofers in ' + T.TOWN + ' and ' + T.COUNTY;
+  const ogDesc = 'Roof repairs, re-roofing, flat roofs, chimneys and leadwork across ' +
+    T.TOWN + ' and 20 miles around. Free quotes, fixed written prices, 24 hour phone line.';
+  const tags = [
+    '<meta property="og:type" content="website">',
+    '<meta property="og:site_name" content="' + esc(T.BUSINESS) + '">',
+    '<meta property="og:locale" content="en_GB">',
+    '<meta property="og:title" content="' + esc(ogTitle) + '">',
+    '<meta property="og:description" content="' + esc(ogDesc) + '">',
+    '<meta property="og:url" content="' + ORIGIN + B + '">',
+    '<meta property="og:image" content="' + CARD + '">',
+    '<meta property="og:image:width" content="1200">',
+    '<meta property="og:image:height" content="630">',
+    '<meta property="og:image:alt" content="' + esc(T.BUSINESS) + ' - roofing in ' + esc(T.TOWN) + ' and ' + esc(T.COUNTY) + '">',
+    '<meta name="twitter:card" content="summary_large_image">',
+    '<meta name="twitter:image" content="' + CARD + '">',
+  ].join('\n');
+  home = home.replace('</title>', '</title>\n' + tags);
+}
+
 if (cfg.searchConsole && cfg.searchConsole.verification) {
   home = home.replace('</title>',
     '</title>\n<meta name="google-site-verification" content="' + cfg.searchConsole.verification + '">');
@@ -274,7 +304,6 @@ for (const s of SERVICES) {
   };
   write(`services/${s.slug}/index.html`, shell({
     slug: `services/${s.slug}`, title: s.title, desc: s.desc,
-    ogImage: s.gallery[0] + '.jpg',
     schema: [bizNode(), ...webPage(`services/${s.slug}`, s.title, s.desc, crumbs), svcSchema, faqSchema(faqs)],
     body: `<section class="page-head"><div class="wrap">${crumbTrail(crumbs)}
   <h1>${esc(tok(s.h1))}</h1>
@@ -325,7 +354,6 @@ for (const s of SERVICES) {
   ];
   write('areas-we-cover/index.html', shell({
     slug: 'areas-we-cover', title, desc,
-    ogImage: 'areas.jpg',
     schema: [bizNode(), ...webPage('areas-we-cover', title, desc, crumbs), faqSchema(faqs)],
     body: `<section class="page-head"><div class="wrap">${crumbTrail(crumbs)}
   <h1>Areas we cover</h1>
@@ -408,7 +436,7 @@ for (const a of AREAS) {
   const title = 'About {{BUSINESS}} | Family Roofers in {{TOWN}}';
   const desc = 'A family roofing business based in Hednesford, {{TOWN}}. Twenty five years, six of us, and our own roofing supplies shop. Call {{PHONE}}.';
   write('about/index.html', shell({
-    slug: 'about', title, desc, ogImage: 'about1.jpg',
+    slug: 'about', title, desc,
     schema: [bizNode(), ...webPage('about', title, desc, crumbs)],
     body: `<section class="page-head"><div class="wrap">${crumbTrail(crumbs)}
   <h1>About ${esc(T.BUSINESS)}</h1>
@@ -449,7 +477,7 @@ for (const a of AREAS) {
   const title = 'Roofing Supplies in {{TOWN}} | {{BUSINESS}}';
   const desc = 'A roofing merchant and a roofing contractor in one yard in Hednesford, {{TOWN}}. Trade counter, collection, and supplier enquiries direct to {{OWNER_FULL}}.';
   write('roofing-supplies/index.html', shell({
-    slug: 'roofing-supplies', title, desc, ogImage: 'about1.jpg',
+    slug: 'roofing-supplies', title, desc,
     /* bizNode + WebPage + BreadcrumbList only. Deliberately NO second business
        entity and nothing naming The Roofing Outlaw as his, and no FAQPage
        because the page carries no visible questions. */
@@ -498,7 +526,7 @@ for (const a of AREAS) {
   const title = 'Our Work | Roofing Photographs | {{BUSINESS}}';
   const desc = 'Photographs of roof repairs, re-roofs, leadwork and flat roofing carried out across {{TOWN}}, Hednesford and {{COUNTY}}.';
   write('our-work/index.html', shell({
-    slug: 'our-work', title, desc, ogImage: 'g1.jpg',
+    slug: 'our-work', title, desc,
     schema: [bizNode(), ...webPage('our-work', title, desc, crumbs)],
     body: `<section class="page-head"><div class="wrap">${crumbTrail(crumbs)}
   <h1>Our work</h1>

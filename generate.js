@@ -325,8 +325,14 @@ ${cfg.searchConsole && cfg.searchConsole.verification
 <meta property="og:title" content="${esc(tok(title))}">
 <meta property="og:description" content="${esc(tok(desc))}">
 <meta property="og:url" content="${canonical}">
-<meta property="og:image" content="${ORIGIN}${asset(ogImage || 'hero_poster.jpg')}">
+<meta property="og:site_name" content="${esc(T.BUSINESS)}">
+<meta property="og:locale" content="en_GB">
+<meta property="og:image" content="${ORIGIN}${asset(ogImage || 'og-home.jpg')}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="${esc(T.BUSINESS)} - roofing in ${esc(T.TOWN)} and across ${esc(T.COUNTY)}">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="${ORIGIN}${asset(ogImage || 'og-home.jpg')}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
