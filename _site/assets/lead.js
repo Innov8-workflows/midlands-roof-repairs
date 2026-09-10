@@ -23,7 +23,7 @@
 (function () {
   'use strict';
 
-  var LEAD_URL = '';
+  var LEAD_URL = 'https://script.google.com/macros/s/AKfycbzn4JFEaXzzLFegCZYYSj07wRE7dTLExrphLwZPeaBr_duebZhnTObvAfONZ9cU0e2Y/exec';
   if (!LEAD_URL) return;              // not deployed yet - do nothing
 
   /* ?test=1 routes the row to a hidden Test tab and prefixes the alert [TEST].

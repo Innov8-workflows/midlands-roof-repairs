@@ -125,7 +125,7 @@ module.exports = {
    * declined banner must never cost a real enquiry. Deliberately a separate
    * file from analytics.js so that difference is structural. */
   leadLog: {
-    exec: '',
+    exec: 'https://script.google.com/macros/s/AKfycbzn4JFEaXzzLFegCZYYSj07wRE7dTLExrphLwZPeaBr_duebZhnTObvAfONZ9cU0e2Y/exec',
   },
 
   analytics: {
