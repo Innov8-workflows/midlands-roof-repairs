@@ -70,8 +70,12 @@ const CSP = [
   "media-src 'self' data:",
   /* Where GA4 actually SENDS the hits. Miss these and the tag loads, the
      console stays clean enough to miss, and Realtime shows nothing at all. */
+  /* script.google.com is the /exec endpoint; script.googleusercontent.com is
+     where it 302s to. Both are required - with only the first, every lead dies
+     silently at the redirect and the form still looks like it worked. */
   "connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com " +
-    "https://*.analytics.google.com https://*.googletagmanager.com",
+    "https://*.analytics.google.com https://*.googletagmanager.com " +
+    "https://script.google.com https://script.googleusercontent.com",
   "form-action 'self'",
   "manifest-src 'none'",
   "worker-src 'none'",
@@ -663,6 +667,20 @@ require('./pages-review.js')({ write, G });
   }
   fs.writeFileSync(path.join(OUT, 'assets', 'analytics.js'), src.split('{{GA4_ID}}').join(GA4));
   console.log('  analytics.js written' + (GA4 ? ' (GA4 ' + GA4 + ', consent gated)' : ' (NO GA4 ID - inert)'));
+}
+
+/* ------------------------------------------------------------ lead beacon -- */
+{
+  const EXEC = (cfg.leadLog && cfg.leadLog.exec) || '';
+  const src = fs.readFileSync(path.join(__dirname, 'lead-src.js'), 'utf8');
+  if (src.split('{{LEAD_EXEC_URL}}').length - 1 !== 1) {
+    throw new Error('lead-src.js must contain exactly one exec URL placeholder');
+  }
+  if (EXEC && !/^https:\/\/script\.google\.com\/macros\/s\/[\w-]+\/exec$/.test(EXEC)) {
+    throw new Error('leadLog.exec is not a deployed /exec URL: ' + EXEC);
+  }
+  fs.writeFileSync(path.join(OUT, 'assets', 'lead.js'), src.split('{{LEAD_EXEC_URL}}').join(EXEC));
+  console.log('  lead.js written' + (EXEC ? ' (logging live)' : ' (NO EXEC URL YET - inert)'));
 }
 
 /* ------------------------------------------------------- sitemap + robots -- */

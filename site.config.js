@@ -110,6 +110,24 @@ module.exports = {
    * Blank this and the whole thing disappears: no gtag, no banner, no cookies.
    * analytics-src.js returns early on an empty id rather than shipping a
    * banner asking permission for something that is not happening. */
+  /* Lead logging. The Apps Script web app fans every contact action out to
+   * Kevin's Google Sheet, an email alert to Jay, and the innov8 CRM.
+   *
+   * Sheet   1-ky5vRZlDCOADxfLnfpqcJuHgfTkAR4vWgjSPmfEFCQ
+   * Script  1Wha9eFTcn7LLOUXLbCONufvbjh5e7ar4RqYhPAiMq5sUrEVDK5N8IVEX
+   *
+   * `exec` is the DEPLOYED web app URL, .../macros/s/AKfyc.../exec - NOT the
+   * editor URL above. While it is empty assets/lead.js returns early and the
+   * site behaves exactly as it did before, so this can ship before the script
+   * is deployed and be switched on with one rebuild.
+   *
+   * NOT consent gated - it sets no cookies and stores no identifiers, and a
+   * declined banner must never cost a real enquiry. Deliberately a separate
+   * file from analytics.js so that difference is structural. */
+  leadLog: {
+    exec: '',
+  },
+
   analytics: {
     ga4: 'G-E33FMGV73W',
   },
