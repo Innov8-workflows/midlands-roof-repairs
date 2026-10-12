@@ -27,13 +27,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>:root{--a-logo-png:url("/assets/logo.png");--a-hero2-jpg:url("/assets/hero2.jpg")}</style>
 <style>
-/* =========================================================
-   BRAND + GEOMETRY
-   Injected by build.js from the chosen art direction.
-   Never edit this block by hand - edit the direction file.
-   ========================================================= */
+
 :root{
-  /* --- palette: derived from the client logo --- */
+
   --brand:#3FB000;        --brand-rgb:63,176,0;
   --brand-lt:#66D42B;
   --brand-dp:#2C7D00;
@@ -43,19 +39,16 @@
   --gold:#FBBC04;
   --on-brand2:#E9F1EE;
 
-  /* --- dark ground --- */
   --ink:#0D1411;          --ink-rgb:13,20,17;
   --ink-1:#141D19;
   --ink-2:#1E2A24;
   --ink-deep:#060A08;     --ink-deep-rgb:6,10,8;
 
-  /* --- text on the dark ground --- */
   --on-ink:#EAF1EC;
   --on-ink-2:#CBD8CF;
   --on-ink-muted:#92A398;
   --on-ink-faint:#6B7B71;
 
-  /* --- text on always-white review cards --- */
   --on-paper:#14231C;
   --on-paper-2:#3C4F45;
   --on-paper-muted:#5D6F65;
@@ -64,32 +57,26 @@
   --star-muted:#AFBCB4;
   --dot-idle:#B7C4BC;
 
-  /* --- the areas band --- */
   --band-bg:#0A1512;
   --band-g1:#12211B;
   --band-g2:#0F2409;
   --chip-core-bg:#22332B;
 
-  /* --- hero rhythm: logo leads, headline supports (Redline / Fairmont) --- */
   --hero-logo:clamp(420px,62vw,760px);
   --hero-logo-sm:min(90vw,360px);
   --hero-logo-gap:34px;
   --hero-logo-gap-sm:22px;
   --hero-h1:clamp(25px,4.3vw,43px);
   --hero-sub:clamp(14px,2.1vw,16.5px);
-  /* The areas band scrim. Sits over .areas-bg, the section photograph, so every
-     layer stays translucent. The geometry matches the band gradient the section
-     used before it carried a picture, so the look is continuous. */
+
   --areas-scrim:radial-gradient(72% 100% at 10% 50%,rgba(var(--brand-rgb),.34),transparent 62%),radial-gradient(72% 100% at 92% 42%,rgba(var(--brand2-rgb),.26),transparent 60%),linear-gradient(115deg,rgba(var(--ink-rgb),.90) 0%,rgba(var(--ink-deep-rgb),.74) 50%,rgba(var(--ink-rgb),.82) 100%);
-  /* Stacked below 860px the copy runs the full width, so darken evenly. */
+
   --areas-scrim-sm:radial-gradient(90% 60% at 20% 20%,rgba(var(--brand-rgb),.30),transparent 64%),linear-gradient(180deg,rgba(var(--ink-rgb),.90) 0%,rgba(var(--ink-deep-rgb),.84) 58%,rgba(var(--ink-rgb),.88) 100%);
   --cta-scrim:linear-gradient(135deg,rgba(var(--brand-rgb),.55),rgba(var(--ink-rgb),.68) 52%,rgba(var(--brand2-rgb),.5)),rgba(var(--ink-rgb),.34);
 
-  /* --- type --- */
   --font-display:"Plus Jakarta Sans",Inter,system-ui,sans-serif;
   --font-body:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
 
-  /* --- geometry: tighter than Natural on every axis --- */
   --r:8px;
   --r-lg:12px;
   --wrap:1200px;
@@ -162,11 +149,6 @@
   --ghost-line:rgba(255,255,255,.28);
 }
 
-/* SURFACES: supplied by the art direction, spliced in above. */
-
-/* =========================================================
-   BASE
-   ========================================================= */
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 body{
@@ -202,13 +184,10 @@ h2.title{font-size:clamp(28px,5.2vw,46px);color:var(--fg)}
   padding:2px 7px;border-radius:5px;vertical-align:middle;
 }
 .logo-mark{background-size:contain;background-repeat:no-repeat;background-position:center;display:block;flex:0 0 auto}
-/* the logo wordmark is white, so on light surfaces it sits on its own dark tile */
+
 .logo-tile{background-color:var(--ink);background-origin:content-box;padding:8px;border-radius:12px}
 .icon{width:22px;height:22px;flex:0 0 auto;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 
-/* =========================================================
-   BUTTONS
-   ========================================================= */
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:9px;
   font-family:var(--font-display);font-weight:700;font-size:15px;letter-spacing:.02em;
@@ -225,9 +204,6 @@ h2.title{font-size:clamp(28px,5.2vw,46px);color:var(--fg)}
 .s-dark .btn-ghost,.s-brand .btn-ghost,.hero .btn-ghost{backdrop-filter:blur(6px);background:rgba(var(--ink-rgb),.32)}
 .btn-block{width:100%}
 
-/* =========================================================
-   NAV  (stays dark in both states, over light and dark alike)
-   ========================================================= */
 .nav{position:fixed;inset:0 0 auto 0;z-index:120;transition:.3s ease;color:var(--on-ink)}
 .nav-in{
   display:flex;align-items:center;justify-content:space-between;gap:16px;height:74px;
@@ -273,9 +249,6 @@ h2.title{font-size:clamp(28px,5.2vw,46px);color:var(--fg)}
 .drawer .btn-ghost{border-color:rgba(255,255,255,.24);color:var(--on-ink);background:rgba(255,255,255,.04)}
 .drawer .btn-ghost:hover{border-color:var(--brand-lt);color:var(--brand-lt)}
 
-/* =========================================================
-   HERO  (always dark)
-   ========================================================= */
 .hero{position:relative;min-height:min(96svh,880px);display:flex;align-items:center;overflow:hidden;isolation:isolate;background:var(--ink-deep)}
 .hero-media{position:absolute;inset:0;z-index:-2;background:var(--ink-deep)}
 .hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.5s ease;transform:scale(1.06)}
@@ -306,9 +279,6 @@ h2.title{font-size:clamp(28px,5.2vw,46px);color:var(--fg)}
 .hero-dots button{width:26px;height:4px;border-radius:4px;background:rgba(255,255,255,.28);transition:.25s;padding:12px 0;box-sizing:content-box;background-clip:content-box}
 .hero-dots button.on{background:var(--brand2);width:38px;background-clip:content-box}
 
-/* =========================================================
-   TRUST STRIP  (dark band, bridges the hero into the light page)
-   ========================================================= */
 .trust{border-bottom:1px solid var(--card-line)}
 .trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--card-line)}
 .trust-item{background:var(--bg);padding:26px 18px;display:flex;flex-direction:column;align-items:center;gap:9px;text-align:center}
@@ -317,9 +287,6 @@ h2.title{font-size:clamp(28px,5.2vw,46px);color:var(--fg)}
 .trust-item b .ph{display:block;margin:5px auto 0;width:fit-content}
 .trust-item span{font-size:12.5px;color:var(--fg-muted);line-height:1.45}
 
-/* =========================================================
-   SERVICES
-   ========================================================= */
 .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:38px}
 .svc{
   position:relative;background:var(--card);border:1px solid var(--card-line);border-radius:var(--r);
@@ -338,9 +305,6 @@ h2.title{font-size:clamp(28px,5.2vw,46px);color:var(--fg)}
 .svc h3{font-size:17.5px;margin-bottom:8px;color:var(--fg)}
 .svc p{font-size:14px;color:var(--fg-muted);line-height:1.6}
 
-/* =========================================================
-   TRANSFORMATIONS  (dark showpiece)
-   ========================================================= */
 .trans{
   background-color:var(--ink);
   background-image:
@@ -365,7 +329,6 @@ h2.title{font-size:clamp(28px,5.2vw,46px);color:var(--fg)}
 .zig-media{border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--card-line-hi);box-shadow:var(--sh-lg);background:#000}
 .zig-media video{width:100%;height:auto;display:block;aspect-ratio:4/5;object-fit:cover;background:#000}
 
-/* before / after slider */
 .ba{position:relative;aspect-ratio:4/5;overflow:hidden;touch-action:pan-y;user-select:none;cursor:ew-resize;--pos:50%}
 .ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
 .ba .after-wrap{position:absolute;inset:0;clip-path:inset(0 0 0 var(--pos))}
@@ -384,9 +347,6 @@ h2.title{font-size:clamp(28px,5.2vw,46px);color:var(--fg)}
 .ba-lbl.b{left:12px;color:#fff}
 .ba-lbl.a{right:12px;color:var(--brand2-lt)}
 
-/* =========================================================
-   GALLERY
-   ========================================================= */
 .gal{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:38px}
 .gal figure{margin:0;position:relative;overflow:hidden;border-radius:12px;aspect-ratio:1/1;background:var(--card);cursor:zoom-in;box-shadow:var(--sh)}
 .gal figure.big{grid-column:span 2;grid-row:span 2}
@@ -397,8 +357,6 @@ h2.title{font-size:clamp(28px,5.2vw,46px);color:var(--fg)}
 .gal figure::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(var(--ink-rgb),.5));opacity:0;transition:.3s}
 .gal figure:hover::after{opacity:1}
 
-
-/* lightbox (always dark) */
 .lb{position:fixed;inset:0;z-index:200;background:rgba(var(--ink-deep-rgb),.95);display:none;align-items:center;justify-content:center;padding:20px;color:var(--on-ink)}
 .lb.open{display:flex}
 .lb img{max-width:100%;max-height:88vh;border-radius:12px;box-shadow:0 18px 44px rgba(0,0,0,.55)}
@@ -406,9 +364,6 @@ h2.title{font-size:clamp(28px,5.2vw,46px);color:var(--fg)}
 .lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);display:grid;place-items:center}
 .lb-nav.prev{left:14px}.lb-nav.next{right:14px}
 
-/* =========================================================
-   WHY CHOOSE US
-   ========================================================= */
 .why{border-block:1px solid var(--card-line)}
 .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:38px}
 .why-card{background:var(--card);border:1px solid var(--card-line);border-radius:var(--r);padding:22px 20px;transition:.24s}
@@ -417,9 +372,6 @@ h2.title{font-size:clamp(28px,5.2vw,46px);color:var(--fg)}
 .why-card h3{font-size:16.5px;margin-bottom:7px;color:var(--fg)}
 .why-card p{font-size:13.8px;color:var(--fg-muted);line-height:1.58}
 
-/* =========================================================
-   REVIEWS
-   ========================================================= */
 .rev-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
 .rev-score{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--card-line);border-radius:var(--r);padding:14px 18px;box-shadow:var(--sh)}
 .rev-score b{font-family:var(--font-display);font-size:34px;font-weight:800;line-height:1}
@@ -447,7 +399,6 @@ h2.title{font-size:clamp(28px,5.2vw,46px);color:var(--fg)}
 .rev-pages button{width:9px;height:9px;border-radius:50%;background:var(--dot-idle);transition:.22s;padding:14px 6px;box-sizing:content-box;background-clip:content-box}
 .rev-pages button.on{background:var(--brand-dp);width:26px;border-radius:6px;background-clip:content-box}
 
-/* review platform links */
 .rev-plat{margin-top:26px;text-align:center}
 .rev-plat-lede{font-size:13.5px;color:var(--fg-muted);margin-bottom:14px}
 .plat-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
@@ -464,7 +415,7 @@ h2.title{font-size:clamp(28px,5.2vw,46px);color:var(--fg)}
 .plat-txt span{font-size:11.5px;color:var(--on-paper-muted)}
 .plat .go{width:16px;height:16px;color:var(--on-paper-faint);margin-left:2px;flex:0 0 auto}
 .plat:hover .go{color:var(--brand-dp)}
-/* each platform keeps its own brand accent on the left edge */
+
 .plat-google{box-shadow:inset 3px 0 0 #4285F4,var(--sh)}
 .plat-google:hover{box-shadow:inset 3px 0 0 #4285F4,var(--sh-lg)}
 .plat-fb{box-shadow:inset 3px 0 0 #1877F2,var(--sh)}
@@ -472,9 +423,6 @@ h2.title{font-size:clamp(28px,5.2vw,46px);color:var(--fg)}
 .plat-cat{box-shadow:inset 3px 0 0 #16357A,var(--sh)}
 .plat-cat:hover{box-shadow:inset 3px 0 0 #16357A,var(--sh-lg)}
 
-/* =========================================================
-   OUR WORK  (full-screen panel opened from Recent Projects)
-   ========================================================= */
 .work-cta{margin-top:26px;text-align:center}
 .work-count{
   display:flex;align-items:center;justify-content:center;gap:7px;
@@ -527,9 +475,6 @@ h2.title{font-size:clamp(28px,5.2vw,46px);color:var(--fg)}
   display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;
 }
 
-/* =========================================================
-   ABOUT
-   ========================================================= */
 .about-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(26px,4.5vw,60px);align-items:center}
 .about-media{position:relative}
 .about-media .main{border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--card-line);box-shadow:var(--sh-lg);aspect-ratio:4/3}
@@ -546,17 +491,6 @@ h2.title{font-size:clamp(28px,5.2vw,46px);color:var(--fg)}
 .about-sign b{font-family:var(--font-display);font-weight:800;font-size:16px;display:block;color:var(--fg)}
 .about-sign span{font-size:12.5px;color:var(--fg-muted)}
 
-/* =========================================================
-   AREAS  (photograph behind a brand-coloured wash)
-   =========================================================
-   A .areas-bg div supplies the picture and .areas-scrim the wash, exactly the
-   way .cta-bg / .cta-scrim work at the foot of the page.
-
-   isolation:isolate makes .areas a stacking context, so a z-index:-2 child
-   paints ABOVE the section's own background-image but below the content. That
-   is what makes the gradient below a real fallback rather than dead weight: a
-   body.html with no .areas-bg still renders the original flat band, unchanged,
-   and there is nothing to switch off with :has() or a modifier class. */
 .areas{
   position:relative;overflow:hidden;isolation:isolate;
   background-color:var(--band-bg);
@@ -578,9 +512,6 @@ h2.title{font-size:clamp(28px,5.2vw,46px);color:var(--fg)}
 .chip.core{background-color:var(--chip-core-bg);background-image:linear-gradient(135deg,rgba(var(--brand-rgb),.34),rgba(var(--brand2-rgb),.20));border-color:var(--brand-lt);color:#fff}
 .chip.ph-chip{border-style:dashed}
 
-/* =========================================================
-   CONTACT
-   ========================================================= */
 .form-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(26px,4.5vw,56px);align-items:start;margin-top:38px}
 .contact-list{display:grid;gap:12px}
 .contact-row{
@@ -605,9 +536,6 @@ form{background:var(--card);border:1px solid var(--card-line);border-radius:var(
 .field select{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235C6659' stroke-width='2' stroke-linecap='round'><path d='m6 9 6 6 6-6'/></svg>");background-repeat:no-repeat;background-position:right 14px center;background-size:18px;padding-right:42px}
 .form-note{font-size:12.5px;color:var(--fg-muted);margin-top:12px;text-align:center}
 
-/* =========================================================
-   FINAL CTA
-   ========================================================= */
 .cta{position:relative;overflow:hidden;isolation:isolate;text-align:center;background:var(--ink)}
 .cta-bg{position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center}
 .cta-scrim{position:absolute;inset:0;z-index:-1;background:var(--cta-scrim)}
@@ -616,9 +544,6 @@ form{background:var(--card);border:1px solid var(--card-line);border-radius:var(
 .cta .btn-ghost{color:#fff;border-color:rgba(255,255,255,.4)}
 .cta .btn-ghost:hover{border-color:#fff;color:#fff;background:rgba(255,255,255,.12)}
 
-/* =========================================================
-   FOOTER  (always dark)
-   ========================================================= */
 .foot{background:var(--ink-deep);color:var(--on-ink);border-top:1px solid rgba(255,255,255,.10);padding-block:clamp(38px,5vw,58px) 0}
 .foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.1fr;gap:32px}
 .foot-brand .logo-mark{width:64px;height:64px;margin-bottom:14px}
@@ -636,9 +561,6 @@ form{background:var(--card);border:1px solid var(--card-line);border-radius:var(
 .foot-bar small{font-size:12.4px;color:var(--on-ink-faint)}
 .foot-bar a{color:var(--brand-lt)}
 
-/* =========================================================
-   WHATSAPP FLOAT
-   ========================================================= */
 .wa{
   position:fixed;right:16px;bottom:16px;z-index:150;width:58px;height:58px;border-radius:50%;
   background:#25D366;display:grid;place-items:center;color:#fff;
@@ -649,20 +571,11 @@ form{background:var(--card);border:1px solid var(--card-line);border-radius:var(
 .wa::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #25D366;animation:pulse 2.6s ease-out infinite}
 @keyframes pulse{0%{transform:scale(1);opacity:.7}70%{transform:scale(1.5);opacity:0}100%{opacity:0}}
 
-/* =========================================================
-   REVEAL
-   ========================================================= */
 .rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,1,.36,1)}
 .rv.in{opacity:1;transform:none}
 
-/* The .ph badge must win over any (0,2,0) descendant colour rule above,
-   e.g. .trust-item span or .about-sign span. Equal specificity, declared
-   later, so source order decides. */
 .ph.ph{color:var(--ink);background-color:var(--gold)}
 
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
 @media(max-width:1024px){
   .work-grid{column-count:3}
   .nav-links{display:none}
@@ -677,9 +590,7 @@ form{background:var(--card);border:1px solid var(--card-line);border-radius:var(
   .zig-row .zig-media{order:2 !important}
   .zig-row .zig-copy{order:1 !important}
   .about-grid,.area-wrap,.form-grid{grid-template-columns:1fr}
-  /* .area-wrap collapses here, so the areas copy now runs the full width of the
-     photograph rather than sitting down its left side. The scrim has to darken
-     evenly or the headline lands on the bright part of the picture. */
+
   .areas-scrim{background:var(--areas-scrim-sm)}
   .about-media .inset{position:static;width:100%;margin-top:12px;border-width:0;aspect-ratio:16/9}
   .trust-grid{grid-template-columns:repeat(2,1fr)}
@@ -793,7 +704,7 @@ form{background:var(--card);border:1px solid var(--card-line);border-radius:var(
   *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
   html{scroll-behavior:auto}
   .rv{opacity:1;transform:none}
-  /* the hero still rotates, it just crossfades instead of panning and zooming */
+
   .hero-slide{animation:none !important;transform:none !important;transition-duration:.8s !important}
 }
 </style>
@@ -802,27 +713,19 @@ form{background:var(--card);border:1px solid var(--card-line);border-radius:var(
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://midlandroofshield.co.uk/"}]}</script>
 </head>
 <body>
-<!-- innov8 site-kit - golden body.
-     Copied per project into _src/body.html, then edited for the client.
-     Section order is the house standard: see rules/HOUSE-RULES.md. Do not
-     reorder it. Double-brace tokens are filled from site.config.js `tokens`; anything
-     left unresolved is reported by check.js. -->
+
 <style>
-  /* Project surface tweaks. Colour only - the direction owns everything else. */
+
   .s-brand{--bg:#101A15}
   .s-tint{--bg:#F3F7F3;--card-line:#E1E8E2;--card-line-hi:#BECBC0}
   .s-light{--card:#F4F7F4;--card-line:#E3EAE4;--card-line-hi:#C4D0C6}
-  /* the brand caption sits on the dark nav and drawer, where --brand2 slate is
-     unreadable. Green reads and matches the wrap. */
+
   .brand-txt span{color:var(--brand-lt)}
-  /* The hero logo box is square in the template, but this lockup is 900x370,
-     so a square box left 59% of its height empty - and doubling the width would
-     have doubled that dead space and pushed the hero past its 880px min-height.
-     Hug the artwork instead; --hero-logo-gap now owns the space below it. */
+
   .hero-logo{aspect-ratio:900/370}
-  /* the transformation clip sits in the same slot the .ba slider did */
+
   .ba-video{display:block;width:100%;border-radius:inherit}
-  /* Where we work: photograph behind the band. Same structure as .cta. */
+
   .areas{position:relative;overflow:hidden;isolation:isolate;background-image:none}
   .areas-bg{position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center}
   .areas-scrim{position:absolute;inset:0;z-index:-1;background:
@@ -830,13 +733,9 @@ form{background:var(--card);border:1px solid var(--card-line);border-radius:var(
     radial-gradient(72% 100% at 92% 42%,rgba(var(--brand2-rgb),.24),transparent 60%),
     linear-gradient(135deg,rgba(var(--ink-deep-rgb),.93) 0%,rgba(var(--ink-rgb),.88) 52%,rgba(var(--ink-deep-rgb),.94) 100%)}
 
-  /* Only one review card is on screen at a time below 680px, so stretching
-     every card to the height of the tallest in the set (the flex default)
-     just leaves a block of dead white under the short ones. */
   @media (max-width:680px){ .rev-track{align-items:flex-start} }
 </style>
 
-<!-- ================= NAV ================= -->
 <header class="nav" id="nav">
   <div class="nav-in">
     <a class="brand" href="#top" aria-label="Midland Roof Shield home">
@@ -868,7 +767,6 @@ form{background:var(--card);border:1px solid var(--card-line);border-radius:var(
   </div>
 </header>
 
-<!-- ================= MOBILE DRAWER ================= -->
 <div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Menu">
   <div class="drawer-top">
     <a class="brand" href="#top">
@@ -898,11 +796,8 @@ form{background:var(--card);border:1px solid var(--card-line);border-radius:var(
   </div>
 </div>
 
-<!-- ================= HERO ================= -->
 <section class="hero s-dark" id="top">
-  <!-- HERO MEDIA: hero-01, a slow orbit of the van, crossfaded end-to-start so it
-       loops without a jump. To go back to a photo slider, restore three
-       .hero-slide divs here and the dots rebuild themselves. -->
+
   <div class="hero-media" id="heroMedia">
     <video class="hero-video" autoplay muted loop playsinline preload="auto"
            poster="/assets/hero_poster.jpg"
@@ -935,7 +830,6 @@ form{background:var(--card);border:1px solid var(--card-line);border-radius:var(
   <div class="hero-dots" id="heroDots" aria-hidden="true"></div>
 </section>
 
-<!-- ================= TRUST ================= -->
 <section class="trust s-dark">
   <div class="wrap" style="padding-inline:0">
     <div class="trust-grid">
@@ -959,7 +853,6 @@ form{background:var(--card);border:1px solid var(--card-line);border-radius:var(
   </div>
 </section>
 
-<!-- ================= SERVICES ================= -->
 <section class="sec s-light" id="services">
   <div class="wrap">
     <div class="center rv">
@@ -1002,7 +895,6 @@ form{background:var(--card);border:1px solid var(--card-line);border-radius:var(
   </div>
 </section>
 
-<!-- ================= TRANSFORMATIONS ================= -->
 <section class="sec trans s-dark" id="transformations">
   <div class="wrap">
     <div class="center rv">
@@ -1027,12 +919,10 @@ form{background:var(--card);border:1px solid var(--card-line);border-radius:var(
         </div>
       </article>
 
-
     </div>
   </div>
 </section>
 
-<!-- ================= GALLERY ================= -->
 <section class="sec s-tint" id="gallery">
   <div class="wrap">
     <div class="center rv">
@@ -1091,7 +981,6 @@ form{background:var(--card);border:1px solid var(--card-line);border-radius:var(
   </div>
 </section>
 
-<!-- ================= WHY ================= -->
 <section class="sec why s-light" id="why">
   <div class="wrap">
     <div class="center rv">
@@ -1134,7 +1023,6 @@ form{background:var(--card);border:1px solid var(--card-line);border-radius:var(
   </div>
 </section>
 
-<!-- ================= REVIEWS ================= -->
 <section class="sec rev s-tint" id="reviews">
   <div class="wrap">
     <div class="rev-head rv">
@@ -1191,7 +1079,6 @@ form{background:var(--card);border:1px solid var(--card-line);border-radius:var(
   </div>
 </section>
 
-<!-- ================= ABOUT ================= -->
 <section class="sec s-light" id="about">
   <div class="wrap">
     <div class="about-grid">
@@ -1217,7 +1104,6 @@ form{background:var(--card);border:1px solid var(--card-line);border-radius:var(
   </div>
 </section>
 
-<!-- ================= AREAS ================= -->
 <section class="sec areas s-brand" id="areas">
   <div class="areas-bg" style="background-image:url('/assets/areas.jpg')" role="img" aria-label="A newly tiled roof above the street it sits on"></div>
   <div class="areas-scrim"></div>
@@ -1245,7 +1131,6 @@ form{background:var(--card);border:1px solid var(--card-line);border-radius:var(
   </div>
 </section>
 
-<!-- ================= CONTACT ================= -->
 <section class="sec s-tint" id="contact">
   <div class="wrap">
     <div class="center rv">
@@ -1278,6 +1163,7 @@ form{background:var(--card);border:1px solid var(--card-line);border-radius:var(
       </div>
 
       <form id="quoteForm" class="rv" novalidate>
+        <div aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden"><label>Leave this empty<input type="text" name="botcheck" tabindex="-1" autocomplete="off" value=""></label></div>
         <div class="f2">
           <label class="field"><span>Your name</span><input type="text" name="name" required autocomplete="name" placeholder="Jane Smith"></label>
           <label class="field"><span>Phone</span><input type="tel" name="phone" required autocomplete="tel" placeholder="07000 000000"></label>
@@ -1307,7 +1193,6 @@ form{background:var(--card);border:1px solid var(--card-line);border-radius:var(
   </div>
 </section>
 
-<!-- ================= FINAL CTA ================= -->
 <section class="sec cta s-dark">
   <div class="cta-bg" style="background-image:var(--a-hero2-jpg)"></div>
   <div class="cta-scrim"></div>
@@ -1327,7 +1212,6 @@ form{background:var(--card);border:1px solid var(--card-line);border-radius:var(
   </div>
 </section>
 
-<!-- ================= FOOTER ================= -->
 <footer class="foot s-dark">
   <div class="wrap">
     <div class="foot-grid">
@@ -1382,12 +1266,10 @@ form{background:var(--card);border:1px solid var(--card-line);border-radius:var(
   </div>
 </footer>
 
-<!-- ================= WHATSAPP FLOAT ================= -->
 <a class="wa" href="https://wa.me/447411859355?text=Hi%20Midland%20Roof%20Shield%2C%20I%20found%20you%20on%20your%20website%20and%20I%20would%20like%20a%20quote." target="_blank" rel="noopener" aria-label="Message us on WhatsApp" data-track="whatsapp">
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
 </a>
 
-<!-- ================= OUR WORK (full panel) ================= -->
 <div class="work" id="work" role="dialog" aria-modal="true" aria-labelledby="workTitle" aria-hidden="true">
   <header class="work-top">
     <div class="work-top-in">
@@ -1413,7 +1295,6 @@ form{background:var(--card);border:1px solid var(--card-line);border-radius:var(
   </div>
 </div>
 
-<!-- ================= LIGHTBOX ================= -->
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Project photo">
   <button class="lb-close" id="lbClose" aria-label="Close"><svg class="icon" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
   <button class="lb-nav prev" id="lbPrev" aria-label="Previous"><svg class="icon" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
@@ -1427,7 +1308,6 @@ form{background:var(--card);border:1px solid var(--card-line);border-radius:var(
   var WA = "447411859355";
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ---------- nav ---------- */
   var nav = document.getElementById("nav");
   var onScroll = function(){ nav.classList.toggle("solid", window.scrollY > 40); };
   onScroll(); window.addEventListener("scroll", onScroll, {passive:true});
@@ -1442,7 +1322,6 @@ form{background:var(--card);border:1px solid var(--card-line);border-radius:var(
   document.getElementById("closeDrawer").addEventListener("click", function(){ openD(false); });
   drawer.querySelectorAll("nav a").forEach(function(a){ a.addEventListener("click", function(){ openD(false); }); });
 
-  /* ---------- hero slider (swap for a video by replacing #heroMedia contents) ---------- */
   var slides = Array.prototype.slice.call(document.querySelectorAll(".hero-slide"));
   var dotsBox = document.getElementById("heroDots"), hi = 0, heroTimer;
   if (slides.length > 1){
@@ -1466,7 +1345,6 @@ form{background:var(--card);border:1px solid var(--card-line);border-radius:var(
     restartHero();
   } else if (dotsBox) { dotsBox.style.display = "none"; }
 
-  /* ---------- before / after sliders ---------- */
   document.querySelectorAll("[data-ba]").forEach(function(ba){
     var drag = false;
     var set = function(clientX){
@@ -1490,7 +1368,6 @@ form{background:var(--card);border:1px solid var(--card-line);border-radius:var(
     ba.addEventListener("click", function(e){ set(e.clientX); });
   });
 
-  /* ---------- gallery, Our Work panel and lightbox ---------- */
   var gal = document.getElementById("gal");
   var galFigs = Array.prototype.slice.call(gal.querySelectorAll("figure"));
   var figs = galFigs.map(function(f){ return f.querySelector("img"); });
@@ -1510,8 +1387,7 @@ form{background:var(--card);border:1px solid var(--card-line);border-radius:var(
   };
   var closeLb = function(){
     lb.classList.remove("open");
-    // the Our Work panel is its own scroll container, so only release the page
-    // scroll lock if that panel is not still open behind the lightbox
+
     lockScroll(work.classList.contains("open"));
   };
   galFigs.forEach(function(f, i){ f.addEventListener("click", function(){ openLb(i); }); });
@@ -1520,8 +1396,6 @@ form{background:var(--card);border:1px solid var(--card-line);border-radius:var(
   document.getElementById("lbNext").addEventListener("click", function(e){ e.stopPropagation(); openLb(li + 1); });
   lb.addEventListener("click", function(e){ if (e.target === lb) closeLb(); });
 
-  /* the panel is populated once, on first open, by cloning the gallery figures.
-     Cloning copies the data URI by reference, so nothing is embedded twice. */
   var workBuilt = false;
   var buildWork = function(){
     if (workBuilt) return;
@@ -1560,7 +1434,6 @@ form{background:var(--card);border:1px solid var(--card-line);border-radius:var(
     if (e.key === "Escape" && work.classList.contains("open")) closeWork();
   });
 
-  /* ---------- reviews carousel ---------- */
   var REVIEWS = [
     {n:"Roger Stephens", t:"Kevin & his team worked extremely well to get my roof water tight in bad weather conditions, then came back the next day to finish off giving me peace of mind, thank full i found them", w:"Verified on Bark", d:"13 October 2024"},
     {n:"Brad Page", t:"Kevin gave us a detailed quote and although not the cheapest, he asked for no money up front, assured us that he only uses the best materials and that he would get the job done in the timeframes that he promised. Throughout the process, Kevin stuck to his word, the lads he sent were all very pleasant and hard working, all work was completed to a high standard in the timeframes he promised.", w:"Verified on Bark", d:"26 January 2025"},
@@ -1620,7 +1493,6 @@ form{background:var(--card);border:1px solid var(--card-line);border-radius:var(
   document.getElementById("revPrev").addEventListener("click", function(){ goRev(rp - 1); resetRev(); });
   document.getElementById("revNext").addEventListener("click", function(){ goRev(rp + 1); resetRev(); });
 
-  /* swipe on mobile */
   var sx = 0, sy = 0, swiping = false;
   revView.addEventListener("touchstart", function(e){ sx = e.touches[0].clientX; sy = e.touches[0].clientY; swiping = true; }, {passive:true});
   revView.addEventListener("touchend", function(e){
@@ -1637,7 +1509,6 @@ form{background:var(--card);border:1px solid var(--card-line);border-radius:var(
     if (pv !== lastPv){ lastPv = pv; buildPages(); goRev(0); resetRev(); }
   });
 
-  /* ---------- contact form to WhatsApp ---------- */
   document.getElementById("quoteForm").addEventListener("submit", function(e){
     e.preventDefault();
     var f = e.target;
@@ -1666,13 +1537,11 @@ form{background:var(--card);border:1px solid var(--card-line);border-radius:var(
     if (!win) window.location.href = url;
   });
 
-  /* ---------- pause timers while the tab is hidden ---------- */
   document.addEventListener("visibilitychange", function(){
     if (document.hidden){ clearInterval(heroTimer); clearInterval(revTimer); }
     else { if (typeof restartHero === "function") restartHero(); resetRev(); }
   });
 
-  /* ---------- reveal on scroll ---------- */
   if ("IntersectionObserver" in window && !reduce){
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(en){

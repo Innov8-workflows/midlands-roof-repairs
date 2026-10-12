@@ -106,6 +106,7 @@
       area: v('area'),
       service: v('service'),
       details: v('detail'),
+      botcheck: v('botcheck'),
       source: 'contact form'
     });
   }, true);

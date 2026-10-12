@@ -734,3 +734,30 @@ fs.writeFileSync(path.join(OUT, 'robots.txt'),
 console.log(`${STAGING ? '_staging' : '_site'}: ${urls.length} pages, ${copied + 1} assets`);
 console.log(`  ${SERVICES.length} services, ${AREAS.length} areas, ${urls.length - SERVICES.length - AREAS.length} other`);
 if (STAGING) console.log(`  STAGING build - noindex on every page, robots.txt disallows all`);
+
+/* ------------------------------------------------------ strip comments -- */
+/* LAST, after every file above is written. Everything served is public - page
+   source, every JS and CSS file - and the sources here are commented for the
+   next person to work on them, not for visitors.
+
+   This used to be done by hand to the built output, which meant the next
+   rebuild put every comment straight back on the live site. Doing it in the
+   build is the only way it stays done.
+
+   Parser-backed (acorn for JS), and every rewritten file is re-tokenised and
+   must match the original token for token, so it cannot change behaviour.
+   A file it cannot prove safe is a hard failure, not a silent skip - a
+   security step that quietly does nothing is worse than none. It then re-reads
+   the whole output and refuses if a single comment survived. */
+{
+  const strip = require('C:\\Users\\Jay\\.claude\\site-kit\\engine\\strip-comments.js');
+  const r = strip.run(OUT, true);
+  if (r.problems.length) {
+    throw new Error('strip-comments could not prove these safe, so the build stops:\n  ' + r.problems.join('\n  '));
+  }
+  const left = strip.run(OUT, false);
+  if (left.total) {
+    throw new Error(left.total + ' comment(s) survived stripping in: ' + left.changed.map(c => c[0]).join(', '));
+  }
+  console.log(`  comments stripped: ${r.total} from ${r.changed.length} file(s), 0 left`);
+}
