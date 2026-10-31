@@ -620,21 +620,26 @@ const legalShell = (slug, h1, title, desc, inner) => {
 legalShell('privacy-policy', 'Privacy policy',
   'Privacy Policy | {{BUSINESS}}',
   'How {{BUSINESS}} collects, uses and stores the personal information you give us.',
-  `<p>This policy explains what ${esc(T.BUSINESS)} does with the personal information you give us. It was last updated in September 2026.</p>
+  `<p>This policy explains what ${esc(T.BUSINESS)} does with the personal information you give us. It was last updated in October 2026.</p>
    <h2>Who we are</h2>
    <p>${esc(T.BUSINESS)}, ${esc(SITE.contact.addressOneLine)}. You can reach us on <a href="tel:${T.PHONE_TEL}">${T.PHONE}</a> or at <a href="mailto:${T.EMAIL}">${T.EMAIL}</a>.</p>
    <h2>What we collect</h2>
    <p>Only what you give us when you get in touch: your name, your phone number, your email address if you use it, the address of the property and whatever you tell us about the job. We do not buy data about you from anyone else.</p>
+   <p>When you send the quote form, it opens WhatsApp on your own device with your message filled in. At the same moment, what you typed in the form (your name, phone number, area, the service and the details) is saved to our enquiry log, so we can get back to you even if you don't finish sending the WhatsApp message. When you tap to call, WhatsApp or email us, we record that a tap happened and on which page, but not who you are.</p>
    <h2>Why we hold it</h2>
    <p>To quote for your work, to carry it out, and to contact you about it afterwards. If you become a customer we keep a record of the work for as long as the guarantee runs, because you may need us to honour it.</p>
    <h2>Who we share it with</h2>
-   <p>Nobody, other than where we genuinely have to in order to do the job, such as a scaffolding contractor who needs the address. We do not sell your details and we do not pass them to marketing companies.</p>
+   <p>Our enquiry log is a Google Sheet, and enquiries are also passed to Innov8 Workflows, who run this website and our enquiry system for us. They hold it only to provide that service to us.</p>
+   <p>Otherwise nobody, other than where we genuinely have to in order to do the job, such as a scaffolding contractor who needs the address. We do not sell your details and we do not pass them to marketing companies.</p>
    <h2>How long we keep it</h2>
    <p>Enquiries that do not turn into work are deleted once they are clearly not going anywhere. Customer records are kept for the length of the guarantee plus the period our insurers require.</p>
    <h2>Your rights</h2>
    <p>You can ask us what we hold about you, ask us to correct it, or ask us to delete it. Contact us on the details above and we will deal with it. If you are not happy with how we have handled it you can complain to the Information Commissioner's Office at ico.org.uk.</p>
    <h2>This website</h2>
-   <p>The site does not set advertising or tracking cookies. If that changes this page will be updated first.</p>`);
+   <p>We use Google Analytics to see how people find and use this site, but only if you press Accept on the cookie bar. Until then it isn't loaded and no Google Analytics cookies are set. If you accept, it sets the <code>_ga</code> and <code>_ga_E33FMGV73W</code> cookies and sends Google a record of the pages you view, roughly where in the country you are, and what kind of device you are on. It does not tell us who you are.</p>
+   <p>Your choice is remembered in your browser, so we don't ask on every page. To change it, clear this site's data in your browser settings and you will be asked again.</p>
+   <p>The site does not set advertising cookies. If that changes this page will be updated first.</p>
+   <p>The site is delivered by Cloudflare, and web fonts are served by Google. Both see the internet address your browser connects from, as any website host does.</p>`);
 
 legalShell('terms', 'Terms and conditions',
   'Terms and Conditions | {{BUSINESS}}',
